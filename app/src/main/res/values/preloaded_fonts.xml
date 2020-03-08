@@ -2,5 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/abel</item>
+        <item>@font/advent_pro</item>
+        <item>@font/belgrano</item>
     </array>
 </resources>

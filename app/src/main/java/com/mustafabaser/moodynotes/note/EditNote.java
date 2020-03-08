@@ -1,4 +1,4 @@
-package com.mustafabaser.moodynotes;
+package com.mustafabaser.moodynotes.note;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mustafabaser.moodynotes.MainActivity;
+import com.mustafabaser.moodynotes.R;
 
 import java.util.HashMap;
 import java.util.Map;

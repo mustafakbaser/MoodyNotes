@@ -6,29 +6,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.mustafabaser.moodynotes.model.Adapter;
 import com.mustafabaser.moodynotes.model.Note;
+import com.mustafabaser.moodynotes.note.AddNote;
+import com.mustafabaser.moodynotes.note.EditNote;
+import com.mustafabaser.moodynotes.note.NoteDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fStore = FirebaseFirestore.getInstance();
 
-        Query query = fStore.collection("notes").orderBy("title", Query.Direction.DESCENDING);
+        Query query = fStore.collection("notes").orderBy("title", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query,Note.class)
                 .build();
@@ -74,12 +82,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         intent.putExtra("title", note.getTitle());
                         intent.putExtra("content", note.getContent());
                         intent.putExtra("code", code);
-                        intent.putExtra("noteId",docId);
+                        intent.putExtra("noteId", docId);
                         v.getContext().startActivity(intent);
                     }
                 });
-            }
 
+                ImageView menuIcon = noteViewHolder.view.findViewById(R.id.menuIcon);
+                menuIcon.setOnClickListener(new View.OnClickListener(){
+
+                    @Override
+                    public void onClick(final View v) {
+                        final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
+                        PopupMenu menu = new PopupMenu(v.getContext(),v);
+                        menu.setGravity(Gravity.END);
+                        menu.getMenu().add("Düzenle").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                Intent intent = new Intent(v.getContext(), EditNote.class);
+                                intent.putExtra("title", note.getTitle());
+                                intent.putExtra("content", note.getContent());
+                                intent.putExtra("noteId", docId);
+                                startActivity(intent);
+                                return false;
+                            }
+                        });
+
+                        menu.getMenu().add("Sil").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                DocumentReference docRef = fStore.collection("notes").document(docId);
+                                docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(MainActivity.this, "Not silindi!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(MainActivity.this, "Not silinemedi!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                return false;
+                            }
+                        });
+
+
+                        menu.show();
+
+                    }
+                });
+            }
 
             @NonNull
             @Override
