@@ -2,15 +2,15 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="yellow">#FFE66E</color>
-    <color name="lightGreen">#a0ef9a</color>
-    <color name="pink">#ffaedf</color>
-    <color name="lightPurple">#d7afff</color>
-    <color name="skyblue">#9edfff</color>
-    <color name="gray">#e0e0e0</color>
-    <color name="red">#DB4848</color>
-    <color name="blue">#8C9EFF</color>
-    <color name="greenlight">#96D162</color>
-    <color name="notgreen">#EA80FC</color>
+    <color name="colorAccent">#FFFFFFFF</color>
+    <color name="yellow">#FFFFFFFF</color>
+    <color name="lightGreen">#FFFFFFFF</color>
+    <color name="pink">#FFFFFFFF</color>
+    <color name="lightPurple">#FFFFFFFF</color>
+    <color name="skyblue">#FFFFFFFF</color>
+    <color name="gray">#FFFFFF</color>
+    <color name="red">#FFFFFFFF</color>
+    <color name="blue">#FFFFFFFF</color>
+    <color name="greenlight">#FFFFFFFF</color>
+    <color name="notgreen">#FFFFFFFF</color>
 </resources>
