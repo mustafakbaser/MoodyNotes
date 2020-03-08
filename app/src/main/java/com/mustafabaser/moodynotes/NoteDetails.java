@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class NoteDetails extends AppCompatActivity {
+    Intent data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class NoteDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back button
 
-        Intent data = getIntent();
+        data = getIntent();
 
 
         TextView content = findViewById(R.id.noteDetailsContent);
@@ -35,6 +36,19 @@ public class NoteDetails extends AppCompatActivity {
         content.setText(data.getStringExtra("content"));
         title.setText(data.getStringExtra("title"));
         content.setBackgroundColor(getResources().getColor(data.getIntExtra("code",0),null));
+
+        FloatingActionButton fab = findViewById(R.id.editNoteButton);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), EditNote.class);
+                intent.putExtra("title", data.getStringExtra("title"));
+                intent.putExtra("content", data.getStringExtra("content"));
+                intent.putExtra("noteId",data.getStringExtra("noteId"));
+                startActivity(intent);
+            }
+        });
 
     }
 

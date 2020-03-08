@@ -72,6 +72,7 @@ public class AddNote extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(AddNote.this,"Hata, tekrar deneyin!",Toast.LENGTH_SHORT).show();
+                        progressBarSave.setVisibility(View.VISIBLE);
                     }
                 });
 
