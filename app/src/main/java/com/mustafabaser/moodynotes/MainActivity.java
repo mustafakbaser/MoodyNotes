@@ -2,13 +2,16 @@ package com.mustafabaser.moodynotes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -29,9 +32,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.mustafabaser.moodynotes.authentication.Register;
 import com.mustafabaser.moodynotes.model.Adapter;
 import com.mustafabaser.moodynotes.model.Note;
 import com.mustafabaser.moodynotes.note.AddNote;
@@ -51,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Adapter adapter;
     FirebaseFirestore fStore;
     FirestoreRecyclerAdapter<Note,NoteViewHolder> noteAdapter;
+    FirebaseUser user;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fAuth = FirebaseAuth.getInstance();
+        user = fAuth.getCurrentUser();
         fStore = FirebaseFirestore.getInstance();
 
         Query query = fStore.collection("notes").orderBy("title", Query.Direction.ASCENDING);
@@ -167,14 +177,60 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        drawerLayout.closeDrawer(GravityCompat.START);
         switch ((menuItem.getItemId())){
             case R.id.addNote:
                 startActivity(new Intent(this, AddNote.class));
                 break;
+
+            case R.id.logout:
+                checkUser();
+                break;
+
             default:
                 Toast.makeText(this,"Yakında!",Toast.LENGTH_SHORT).show();
         }
         return false;
+    }
+
+    private void checkUser() {
+        // kullanıcı gerçek mi yoksa değil mi
+        if(user.isAnonymous()) {
+            displayAlert();
+        }else{
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getApplicationContext(), Splash.class));
+            finish();
+        }
+    }
+
+    private void displayAlert() {
+        AlertDialog.Builder warning = new AlertDialog.Builder(this)
+                .setTitle("Emin misiniz?")
+                .setMessage("Anonim hesap kullanıyorsunuz, çıkış yapıldığında tüm notlarınız silinir!")
+                .setPositiveButton("Sync Note", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getApplicationContext(), Register.class));
+                        finish();
+                    }
+                }).setNegativeButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO: tüm anonim notları sil
+
+                        // TODO: anonim kullanıcıyı sil
+
+                        user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                startActivity(new Intent(getApplicationContext(),Splash.class));
+                                finish();
+                            }
+                        });
+                    }
+                });
+        warning.show();
     }
 
     @Override

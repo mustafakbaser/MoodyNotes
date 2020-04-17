@@ -25,9 +25,27 @@ public class Splash extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                // giriş yapıp yapmadığını kontrol edecek
+                if(fAuth.getCurrentUser() != null){
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                }else {
+                    // yeni anonim hesap
+                    fAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Toast.makeText(Splash.this, "Notlarınız bir hesaba bağlanmayacak.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(Splash.this, "Hata! " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
+                }
             }
-        },3000);
+        },2000);
     }
 }
