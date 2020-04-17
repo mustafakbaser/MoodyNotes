@@ -28,6 +28,7 @@ public class Splash extends AppCompatActivity {
                 // giriş yapıp yapmadığını kontrol edecek
                 if(fAuth.getCurrentUser() != null){
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
                 }else {
                     // yeni anonim hesap
                     fAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {

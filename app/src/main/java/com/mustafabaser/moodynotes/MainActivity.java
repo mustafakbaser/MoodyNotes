@@ -37,6 +37,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.mustafabaser.moodynotes.authentication.Login;
 import com.mustafabaser.moodynotes.authentication.Register;
 import com.mustafabaser.moodynotes.model.Adapter;
 import com.mustafabaser.moodynotes.model.Note;
@@ -71,7 +72,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user = fAuth.getCurrentUser();
         fStore = FirebaseFirestore.getInstance();
 
-        Query query = fStore.collection("notes").orderBy("title", Query.Direction.ASCENDING);
+        //Query notes > uuid > notlarim olmasını sağlayacağım
+        Query query = fStore.collection("notes").document(user.getUid()).collection("notlarim").orderBy("title", Query.Direction.ASCENDING);
+
+
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query,Note.class)
                 .build();
@@ -181,6 +185,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch ((menuItem.getItemId())){
             case R.id.addNote:
                 startActivity(new Intent(this, AddNote.class));
+                break;
+
+            case R.id.sync:
+                if(user.isAnonymous()){
+                    startActivity(new Intent(this, Login.class));
+                }else{
+                    Toast.makeText(this, "Sisteme bağlısınız, notlarınız otomatik senkronize ediliyor.", Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.logout:
