@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/settings"
-        android:title="Ayarlar" />
+        android:title="Yenile" />
 </menu>

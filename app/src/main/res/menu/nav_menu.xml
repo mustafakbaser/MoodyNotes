@@ -20,12 +20,15 @@
         </menu>
 
     </item>
-    <item android:title="Destek">
+    <item
+        android:title="Destek"
+        android:visible="false">
         <menu>
             <item
                 android:id="@+id/rating"
                 android:icon="@drawable/ic_star_half_black_24dp"
-                android:title="Bizi Puanla" />
+                android:title="Bizi Puanla"
+                android:visible="false" />
             <item
                 android:id="@+id/shareapp"
                 android:icon="@drawable/ic_share_black_24dp"

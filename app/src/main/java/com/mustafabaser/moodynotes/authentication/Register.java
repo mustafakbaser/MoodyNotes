@@ -19,6 +19,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.auth.User;
 import com.mustafabaser.moodynotes.MainActivity;
 import com.mustafabaser.moodynotes.R;
 
@@ -58,7 +61,7 @@ public class Register extends AppCompatActivity {
         syncAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uUserName = rUserName.getText().toString();
+                final String uUserName = rUserName.getText().toString();
                 String uUserEmail = rUserEmail.getText().toString();
                 String uUserPass = rUserPass.getText().toString();
                 String uConfPass = rUserConfPass.getText().toString();
@@ -78,6 +81,18 @@ public class Register extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(Register.this, "Başarıyla kayıt oldunuz.", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                        FirebaseUser userNav = fAuth.getCurrentUser();
+                        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(uUserName) // buraya bi dön
+                                .build();
+                        userNav.updateProfile(request);
+                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+
+                        overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                        finish();
+
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

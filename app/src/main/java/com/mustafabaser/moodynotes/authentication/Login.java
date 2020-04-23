@@ -119,13 +119,13 @@ public class Login extends AppCompatActivity {
             AlertDialog.Builder warning = new AlertDialog.Builder(this)
                     .setTitle("Emin misiniz?")
                     .setMessage("Başka bir hesaba bağlanmak, kayıtlı tüm notları silecektir. Onları kaydetmek için yeni hesap oluşturun.")
-                    .setPositiveButton("Notları Kaydet", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Kayıt Ol", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             startActivity(new Intent(getApplicationContext(), Register.class));
                             finish();
                         }
-                    }).setNegativeButton("Kabul", new DialogInterface.OnClickListener() {
+                    }).setNegativeButton("Giriş Yap", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         }

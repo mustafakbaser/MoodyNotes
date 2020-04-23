@@ -45,6 +45,8 @@ import com.mustafabaser.moodynotes.note.AddNote;
 import com.mustafabaser.moodynotes.note.EditNote;
 import com.mustafabaser.moodynotes.note.NoteDetails;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         menu.getMenu().add("Sil").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
-                                DocumentReference docRef = fStore.collection("notes").document(docId);
+                                DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(docId);
                                 docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
@@ -139,10 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 return false;
                             }
                         });
-
-
                         menu.show();
-
                     }
                 });
             }
@@ -168,12 +167,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         noteLists.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)); //spanCount yazan yere yan yana kaç not olacağını yazıyorum.
         noteLists.setAdapter(noteAdapter);
 
+        View headerView = nav_view.getHeaderView(0);
+        TextView navUserName = headerView.findViewById(R.id.userDisplayName);
+        TextView navUserEmail = headerView.findViewById(R.id.userDisplayEmail);
+
+        if(user.isAnonymous()) {
+            navUserEmail.setVisibility(View.GONE);
+            navUserName.setText("Giriş Yapılmadı");
+        }else{
+            navUserName.setText(user.getDisplayName());
+            navUserEmail.setText(user.getEmail());
+        }
 
         FloatingActionButton fab = findViewById(R.id.addNoteFloat);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View  view){
                 startActivity(new Intent(view.getContext(), AddNote.class));
+                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
             }
         });
 
@@ -183,13 +194,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         drawerLayout.closeDrawer(GravityCompat.START);
         switch ((menuItem.getItemId())){
+            case R.id.notes:
+                //startActivity(new Intent(this, MainActivity.class));
+                break;
+
             case R.id.addNote:
                 startActivity(new Intent(this, AddNote.class));
+                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 break;
 
             case R.id.sync:
                 if(user.isAnonymous()){
                     startActivity(new Intent(this, Login.class));
+                    overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 }else{
                     Toast.makeText(this, "Sisteme bağlısınız, notlarınız otomatik senkronize ediliyor.", Toast.LENGTH_SHORT).show();
                 }
@@ -200,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             default:
-                Toast.makeText(this,"Yakında!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"MoodyNotes",Toast.LENGTH_SHORT).show();
         }
         return false;
     }
@@ -212,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else{
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), Splash.class));
-            finish();
+            overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
         }
     }
 
@@ -220,24 +237,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog.Builder warning = new AlertDialog.Builder(this)
                 .setTitle("Emin misiniz?")
                 .setMessage("Anonim hesap kullanıyorsunuz, çıkış yapıldığında tüm notlarınız silinir!")
-                .setPositiveButton("Sync Note", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Kayıt Ol", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(getApplicationContext(), Register.class));
                         finish();
                     }
-                }).setNegativeButton("Logout", new DialogInterface.OnClickListener() {
+                }).setNegativeButton("Temizle", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // TODO: tüm anonim notları sil
-
-                        // TODO: anonim kullanıcıyı sil
 
                         user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 startActivity(new Intent(getApplicationContext(),Splash.class));
-                                finish();
+                                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                             }
                         });
                     }
@@ -255,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.settings){
-            Toast.makeText(this, "Ayarlar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Notlar senkronize edildi.", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
