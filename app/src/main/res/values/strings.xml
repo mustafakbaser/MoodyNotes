@@ -9,7 +9,17 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_add_note">AddNote</string>
+
+    <string name="notlarim">Notlarıma Dön</string>
+    <string name="onay">MoodyNotes\'u kullanarak Gizlilik Sözleşmesini kabul etmiş olursunuz.</string>
+    <string name="sozlesme">Gizlilik Sözleşmesi</string>
+    <string name="sozlesme_detaylari">
+        İşbu "Gizlilik Sözleşmesi", DKS Apps tarafından yayınlanan "Moody Notes" uygulaması için kullanıcı veya uygulama tarafından oluşabilecek hatalardan DKS Apps ve MoodyNotes sorumlu değildir.
+        \nNotlarınızın silinmesi, kaybolması veya Google Firebase destekli veritabanımıza saldırı sonucu üçüncü kişilerin eline geçmesinden kesinlikle tarafımız sorumlu değildir.
+        \nUygulamada bulunabilecek açıkları kullanmak, tarafımıza bildirmemek ve dışarıyla paylaşmak kesinlikle suçtur.
+        \nBu Gizlilik Sözleşmesinde değişiklik yapılabilir. Gizlilik Sözleşmesi\'ndeki herhangi bir değişiklik sitede duyurulacaktır. Site kanalıyla kullanıcıya gönderilen tüm bilgiler, değiştirilmiş şekliyle Gizlilik Sözleşmesi\'nin şart ve koşullarına tabidir.
+        \nBu uygulamayı (MoodyNotes) kullanan herkes Gizlilik Sözleşmesi\'ndeki maddeleri kabul etmiş sayılır.
+    </string>
+
 </resources>

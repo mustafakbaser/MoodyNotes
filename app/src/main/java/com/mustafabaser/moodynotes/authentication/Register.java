@@ -21,7 +21,6 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.auth.User;
 import com.mustafabaser.moodynotes.MainActivity;
 import com.mustafabaser.moodynotes.R;
 

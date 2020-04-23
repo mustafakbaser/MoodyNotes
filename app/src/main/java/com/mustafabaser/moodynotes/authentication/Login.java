@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -132,5 +133,12 @@ public class Login extends AppCompatActivity {
                     });
             warning.show();
         }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 }
 
