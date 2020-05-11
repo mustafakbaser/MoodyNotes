@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Genel">
+    <item android:title="@string/navbar_general_title">
         <menu>
             <item
                 android:id="@+id/notes"
                 android:icon="@drawable/ic_event_note_black_24dp"
-                android:title="Notlarım" />
+                android:title="@string/navbar_my_notes" />
             <item
                 android:id="@+id/addNote"
                 android:icon="@drawable/ic_add_circle_black_24dp"
-                android:title="Not Ekle" />
+                android:title="@string/navbar_add_note" />
             <item
                 android:id="@+id/sync"
                 android:icon="@drawable/ic_sync_black_24dp"
-                android:title="Senkronize" />
+                android:title="@string/navbar_synchronize" />
 
 
         </menu>
 
     </item>
     <item
-        android:title="Destek"
+        android:title="@string/navbar_support"
         android:visible="false">
         <menu>
             <item
                 android:id="@+id/rating"
                 android:icon="@drawable/ic_star_half_black_24dp"
-                android:title="Bizi Puanla"
+                android:title="@string/navbar_rate_us"
                 android:visible="false" />
             <item
                 android:id="@+id/shareapp"
                 android:icon="@drawable/ic_share_black_24dp"
-                android:title="Paylaş" />
+                android:title="@string/navbar_share" />
         </menu>
 
     </item>
-    <item android:title="Çıkış">
+    <item android:title="@string/navbar_clear_Title">
         <menu>
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"
-                android:title="Çıkış Yap" />
+                android:title="@string/navbar_clear" />
         </menu>
 
     </item>

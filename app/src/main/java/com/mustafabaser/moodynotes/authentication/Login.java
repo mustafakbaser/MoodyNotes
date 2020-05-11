@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getSupportActionBar().setTitle("MoodyNotes - Giriş Yap");
+        getSupportActionBar().setTitle(R.string.login_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Backbutton
 
         lEmail = findViewById(R.id.email);
@@ -58,81 +58,81 @@ public class Login extends AppCompatActivity {
         showWarning();
 
         loginNow.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            String mEmail = lEmail.getText().toString();
-                                            String mPassword = lPassword.getText().toString();
+            @Override
+            public void onClick(View v) {
+                String mEmail = lEmail.getText().toString();
+                String mPassword = lPassword.getText().toString();
 
-                                            if (mEmail.isEmpty() || mPassword.isEmpty()) {
-                                                Toast.makeText(Login.this, "Bu alanlar boş bırakılamaz!", Toast.LENGTH_SHORT).show();
-                                                return;
-                                            }
+                if (mEmail.isEmpty() || mPassword.isEmpty()) {
+                    Toast.makeText(Login.this, R.string.login_empty_field, Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                                            // ilk girişte tüm anonim notları silmek
-                                            spinner.setVisibility(View.VISIBLE);
+                // ilk girişte tüm anonim notları silmek
+                spinner.setVisibility(View.VISIBLE);
 
-                                            if (fAuth.getCurrentUser().isAnonymous()) {
-                                                FirebaseUser user = fAuth.getCurrentUser();
+                if (fAuth.getCurrentUser().isAnonymous()) {
+                    FirebaseUser user = fAuth.getCurrentUser();
 
-                                                fStore.collection("notes").document(user.getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(Login.this, "Anonim notlar temizlendi.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
+                    fStore.collection("notes").document(user.getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(Login.this, R.string.login_anon_notes_deleted, Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                                                //anonim hesapları silmek
+                    //anonim hesapları silmek
 
-                                                user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        Toast.makeText(Login.this, "Anonim kullanıcı hesabı silindi.", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                });
-                                            }
+                    user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(Login.this, R.string.login_anon_acc_deleted, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
 
-                                            fAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                                @Override
-                                                public void onSuccess(AuthResult authResult) {
-                                                    Toast.makeText(Login.this, "Giriş başarılı!", Toast.LENGTH_SHORT).show();
-                                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                                    finish();
-                                                }
-                                            }).addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(Login.this, "Giriş başarısız! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    spinner.setVisibility(View.GONE);
-                                                }
-                                            });
-                                        }
-                                    });
-                createAcc.setOnClickListener(new View.OnClickListener() {
+                fAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(getApplicationContext(), Register.class));
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Login.this, getString(R.string.login_unsuccessful) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        spinner.setVisibility(View.GONE);
                     }
                 });
             }
+        });
+        createAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Register.class));
+            }
+        });
+    }
 
 
-        private void showWarning() {
-            AlertDialog.Builder warning = new AlertDialog.Builder(this)
-                    .setTitle("Emin misiniz?")
-                    .setMessage("Başka bir hesaba bağlanmak, kayıtlı tüm notları silecektir. Onları kaydetmek için yeni hesap oluşturun.")
-                    .setPositiveButton("Kayıt Ol", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(getApplicationContext(), Register.class));
-                            finish();
-                        }
-                    }).setNegativeButton("Giriş Yap", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-            warning.show();
-        }
+    private void showWarning() {
+        AlertDialog.Builder warning = new AlertDialog.Builder(this)
+                .setTitle(R.string.areyousure)
+                .setMessage(R.string.connect_new_account)
+                .setPositiveButton(R.string.register, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getApplicationContext(), Register.class));
+                        finish();
+                    }
+                }).setNegativeButton(R.string.login_login, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        warning.show();
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

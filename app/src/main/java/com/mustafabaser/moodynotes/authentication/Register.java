@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        getSupportActionBar().setTitle("MoodyNotes - Yeni Kayıt");
+        getSupportActionBar().setTitle(R.string.register_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Backbutton
 
         rUserName = findViewById(R.id.userName);
@@ -66,11 +66,11 @@ public class Register extends AppCompatActivity {
                 String uConfPass = rUserConfPass.getText().toString();
 
                 if(uUserName.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty() || uUserEmail.isEmpty()){
-                    Toast.makeText(Register.this, "Tüm alanları doldurmak zorunludur!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, R.string.register_empty_field, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(!uUserPass.equals(uConfPass)){
-                    rUserConfPass.setError("Şifreler eşleşmiyor!");
+                    rUserConfPass.setError(getString(R.string.register_pass_doesnot_match));
                 }
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -78,7 +78,7 @@ public class Register extends AppCompatActivity {
                 fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(Register.this, "Başarıyla kayıt oldunuz.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, R.string.register_successful, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
                         FirebaseUser userNav = fAuth.getCurrentUser();
@@ -96,7 +96,7 @@ public class Register extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Register.this, "Bağlantı kurulamadı. Tekrar deneyin.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register.this, R.string.register_connection_alert, Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.VISIBLE);
                     }
                 });

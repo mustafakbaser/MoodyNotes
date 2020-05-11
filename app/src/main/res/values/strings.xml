@@ -2,24 +2,70 @@
     <string name="app_name">Moody Notes</string>
     <string name="open">open</string>
     <string name="close">close</string>
-    <string name="title_activity_note_details">NoteDetails</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="title_activity_note_details">Not Detayları</string>
 
-    <string name="title_activity_add_note">AddNote</string>
+    <string name="title_activity_add_note">Not Ekle</string>
 
     <string name="notlarim">Notlarıma Dön</string>
     <string name="onay">MoodyNotes\'u kullanarak Gizlilik Sözleşmesini kabul etmiş olursunuz.</string>
     <string name="sozlesme">Gizlilik Sözleşmesi</string>
-    <string name="sozlesme_detaylari">
-        İşbu "Gizlilik Sözleşmesi", DKS Apps tarafından yayınlanan "Moody Notes" uygulaması için kullanıcı veya uygulama tarafından oluşabilecek hatalardan DKS Apps ve MoodyNotes sorumlu değildir.
-        \nNotlarınızın silinmesi, kaybolması veya Google Firebase destekli veritabanımıza saldırı sonucu üçüncü kişilerin eline geçmesinden kesinlikle tarafımız sorumlu değildir.
-        \nUygulamada bulunabilecek açıkları kullanmak, tarafımıza bildirmemek ve dışarıyla paylaşmak kesinlikle suçtur.
-        \nBu Gizlilik Sözleşmesinde değişiklik yapılabilir. Gizlilik Sözleşmesi\'ndeki herhangi bir değişiklik sitede duyurulacaktır. Site kanalıyla kullanıcıya gönderilen tüm bilgiler, değiştirilmiş şekliyle Gizlilik Sözleşmesi\'nin şart ve koşullarına tabidir.
-        \nBu uygulamayı (MoodyNotes) kullanan herkes Gizlilik Sözleşmesi\'ndeki maddeleri kabul etmiş sayılır.
-    </string>
+    <string name="sozlesme_detaylari">"         İşbu Gizlilik Sözleşmesi, DKS Apps tarafından yayınlanan Moody Notes uygulaması için kullanıcı veya uygulama tarafından oluşabilecek hatalardan DKS Apps ve MoodyNotes sorumlu değildir.          Notlarınızın silinmesi, kaybolması veya Google Firebase destekli veritabanımıza saldırı sonucu üçüncü kişilerin eline geçmesinden kesinlikle tarafımız sorumlu değildir.          Uygulamada bulunabilecek açıkları kullanmak, tarafımıza bildirmemek ve dışarıyla paylaşmak kesinlikle suçtur.          Bu Gizlilik Sözleşmesinde değişiklik yapılabilir. Gizlilik Sözleşmesi'ndeki herhangi bir değişiklik sitede duyurulacaktır. Site kanalıyla kullanıcıya gönderilen tüm bilgiler, değiştirilmiş şekliyle Gizlilik Sözleşmesi'nin şart ve koşullarına tabidir.          Bu uygulamayı (MoodyNotes) kullanan herkes Gizlilik Sözleşmesi'ndeki maddeleri kabul etmiş sayılır.     "</string>
+    <string name="navbar_clear">Temizle</string>
+    <string name="navbar_clear_Title">Temizle (Giriş Yapıldıysa Oturumu Kapatır)</string>
+    <string name="navbar_share">Paylaş</string>
+    <string name="navbar_rate_us">Bizi Puanla</string>
+    <string name="navbar_support">Destek</string>
+    <string name="navbar_synchronize">Senkronize</string>
+    <string name="navbar_add_note">Not Ekle</string>
+    <string name="navbar_my_notes">Notlarım</string>
+    <string name="navbar_general_title">Genel</string>
+    <string name="splashscreen_description">Yepyeni Not Deneyimi</string>
+    <string name="moody_notes">Moody Notes</string>
+    <string name="register_name_surname">İsim Soyisim</string>
+    <string name="register_email">E-mail Adresiniz</string>
+    <string name="register_password">Şifreniz</string>
+    <string name="register_pass_confirmation">Şifrenizi Onaylayın</string>
+    <string name="register_register">Kayıt Ol</string>
+    <string name="register_already_user">Zaten Üye Misiniz: Giriş Yap</string>
+    <string name="login_email">E-mail Adresiniz</string>
+    <string name="login_password">Şifreniz</string>
+    <string name="login_login">Giriş Yap</string>
+    <string name="login_forgot_password">Şifremi Unuttum</string>
+    <string name="login_create_new_acc">Yeni Hesap Oluştur</string>
+    <string name="addnote_unnamed_note">İsimsiz Not</string>
+    <string name="addnote_start_writing">Yazmaya başla…</string>
+    <string name="navbarheader_email">iletisim@mustafabaser.net</string>
+    <string name="navbarheader_description">Yepyeni Bir Not Defteri Deneyimi</string>
+    <string name="navbarheader_name">Mustafa Kürşad Başer</string>
+    <string name="options_refresh">Yenile</string>
+    <string name="note_updated">Not güncellendi!</string>
+    <string name="error_try_again">Hata, tekrar deneyin!</string>
+    <string name="error_note_title">Not ya da başlık girmeden yeni not kaydedemezsiniz!</string>
+    <string name="note_added">Not eklendi!</string>
+    <string name="note_deleted">Not silindi!</string>
+    <string name="note_not_deleted">Not silinemedi!</string>
+    <string name="already_sync">Sisteme bağlısınız, notlarınız otomatik senkronize ediliyor.</string>
+    <string name="areyousure">Emin misiniz?</string>
+    <string name="logout_alert">Anonim hesap kullanıyorsunuz, çıkış yapıldığında tüm notlarınız silinir!</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="clear">Temizle</string>
+    <string name="notes_sync_successfully">Notlar senkronize edildi.</string>
+    <string name="note_not_sync_alert">Notlarınız bir hesaba bağlanmayacak.</string>
+    <string name="error">\"Hata! \"</string>
+    <string name="edit">Düzenle</string>
+    <string name="delete">Sil</string>
+    <string name="not_logged_in">Giriş Yapılmadı</string>
+    <string name="connect_new_account">Başka bir hesaba bağlanmak, kayıtlı tüm notları silecektir. Onları kaydetmek için yeni hesap oluşturun.</string>
+    <string name="login_unsuccessful">\"Giriş başarısız! \"</string>
+    <string name="login_successful">Giriş başarılı!</string>
+    <string name="login_anon_acc_deleted">Anonim kullanıcı hesabı silindi.</string>
+    <string name="login_anon_notes_deleted">Anonim notlar temizlendi.</string>
+    <string name="login_empty_field">Bu alanlar boş bırakılamaz!</string>
+    <string name="login_title">Giriş Yap</string>
+    <string name="register_title">Yeni Kayıt</string>
+    <string name="register_empty_field">Tüm alanları doldurmak zorunludur!</string>
+    <string name="register_pass_doesnot_match">Şifreler eşleşmiyor!</string>
+    <string name="register_successful">Başarıyla kayıt oldunuz.</string>
+    <string name="register_connection_alert">Bağlantı kurulamadı. Tekrar deneyin.</string>
 
 </resources>

@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
                         PopupMenu menu = new PopupMenu(v.getContext(),v);
                         menu.setGravity(Gravity.END);
-                        menu.getMenu().add("Düzenle").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        menu.getMenu().add(R.string.edit).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 Intent intent = new Intent(v.getContext(), EditNote.class);
@@ -123,19 +123,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
-                        menu.getMenu().add("Sil").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        menu.getMenu().add(R.string.delete).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(docId);
                                 docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Toast.makeText(MainActivity.this, "Not silindi!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, R.string.note_deleted, Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(MainActivity.this, "Not silinemedi!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, R.string.note_not_deleted, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 return false;
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if(user.isAnonymous()) {
             navUserEmail.setVisibility(View.GONE);
-            navUserName.setText("Giriş Yapılmadı");
+            navUserName.setText(R.string.not_logged_in);
         }else{
             navUserName.setText(user.getDisplayName());
             navUserEmail.setText(user.getEmail());
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(new Intent(this, Login.class));
                     overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 }else{
-                    Toast.makeText(this, "Sisteme bağlısınız, notlarınız otomatik senkronize ediliyor.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.already_sync, Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -235,15 +235,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void displayAlert() {
         AlertDialog.Builder warning = new AlertDialog.Builder(this)
-                .setTitle("Emin misiniz?")
-                .setMessage("Anonim hesap kullanıyorsunuz, çıkış yapıldığında tüm notlarınız silinir!")
-                .setPositiveButton("Kayıt Ol", new DialogInterface.OnClickListener() {
+                .setTitle(R.string.areyousure)
+                .setMessage(R.string.logout_alert)
+                .setPositiveButton(R.string.register, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(getApplicationContext(), Register.class));
                         finish();
                     }
-                }).setNegativeButton("Temizle", new DialogInterface.OnClickListener() {
+                }).setNegativeButton(R.string.clear, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.settings){
-            Toast.makeText(this, "Notlar senkronize edildi.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.notes_sync_successfully, Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

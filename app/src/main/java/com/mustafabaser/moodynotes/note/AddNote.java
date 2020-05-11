@@ -54,7 +54,7 @@ public class AddNote extends AppCompatActivity {
                 String nContent = noteContent.getText().toString();
 
                 if(nTitle.isEmpty() || nContent.isEmpty()){
-                    Toast.makeText(AddNote.this,"Not ya da başlık girmeden yeni not kaydedemezsiniz!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNote.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -70,13 +70,13 @@ public class AddNote extends AppCompatActivity {
                 docref.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(AddNote.this,"Not eklendi!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNote.this, R.string.note_added, Toast.LENGTH_SHORT).show();
                         onBackPressed();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddNote.this,"Hata, tekrar deneyin!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNote.this, R.string.error_try_again,Toast.LENGTH_SHORT).show();
                         progressBarSave.setVisibility(View.VISIBLE);
                     }
                 });
@@ -95,7 +95,7 @@ public class AddNote extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.close){
-            Toast.makeText(this, "Not silindi!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.note_deleted, Toast.LENGTH_SHORT).show();
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);

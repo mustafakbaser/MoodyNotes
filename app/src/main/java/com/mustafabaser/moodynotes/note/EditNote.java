@@ -63,7 +63,7 @@ public class EditNote extends AppCompatActivity {
                 String nContent = editNoteContent.getText().toString();
 
                 if(nTitle.isEmpty() || nContent.isEmpty()){
-                    Toast.makeText(EditNote.this,"Not ya da başlık girmeden yeni not kaydedemezsiniz!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditNote.this, R.string.error_note_title, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -80,17 +80,16 @@ public class EditNote extends AppCompatActivity {
                 docref.update(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(EditNote.this,"Not güncellendi!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditNote.this, R.string.note_updated, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EditNote.this,"Hata, tekrar deneyin!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditNote.this, R.string.error_try_again,Toast.LENGTH_SHORT).show();
                         spinner.setVisibility(View.VISIBLE);
                     }
                 });
-
             }
         });
     }

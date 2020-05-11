@@ -19,7 +19,7 @@
         android:backgroundTint="@android:color/transparent"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Yazmaya başla..."
+        android:hint="@string/addnote_start_writing"
         android:inputType="textMultiLine"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"

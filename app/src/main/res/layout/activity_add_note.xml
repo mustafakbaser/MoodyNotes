@@ -25,7 +25,7 @@
                 android:backgroundTint="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="İsimsiz Not"
+                android:text="@string/addnote_unnamed_note"
                 android:textColor="#fff"
                 android:textColorHint="#FFFFFF"
                 android:textStyle="bold" />

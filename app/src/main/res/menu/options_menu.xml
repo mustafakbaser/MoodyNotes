@@ -3,5 +3,5 @@
 
     <item
         android:id="@+id/settings"
-        android:title="Yenile" />
+        android:title="@string/options_refresh" />
 </menu>
