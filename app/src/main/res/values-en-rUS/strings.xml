@@ -66,4 +66,7 @@
     <string name="register_pass_doesnot_match">Passwords do not match!</string>
     <string name="register_successful">You have successfully registered.</string>
     <string name="register_connection_alert">Connection could not be established. Try again.</string>
+    <string name="forgotpassword_send_my_password">Send My Password</string>
+    <string name="forgetpass_reset_my_pass">Forgot Password</string>
+    <string name="forgotpass_password_send_to_your_mail">Your password has been sent to your email address!</string>
 </resources>

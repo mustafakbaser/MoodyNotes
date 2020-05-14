@@ -67,5 +67,8 @@
     <string name="register_pass_doesnot_match">Şifreler eşleşmiyor!</string>
     <string name="register_successful">Başarıyla kayıt oldunuz.</string>
     <string name="register_connection_alert">Bağlantı kurulamadı. Tekrar deneyin.</string>
+    <string name="forgotpassword_send_my_password">Şifremi Gönder</string>
+    <string name="forgetpass_reset_my_pass">Şifremi Unuttum</string>
+    <string name="forgotpass_password_send_to_your_mail">Şifreniz e-mail adresinize gönderildi!</string>
 
 </resources>

@@ -40,7 +40,7 @@ public class Register extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Backbutton
 
         rUserName = findViewById(R.id.userName);
-        rUserEmail = findViewById(R.id.userEmail);
+        rUserEmail = findViewById(R.id.userEmailForget);
         rUserPass = findViewById(R.id.password);
         rUserConfPass = findViewById(R.id.passwordConfirm);
 

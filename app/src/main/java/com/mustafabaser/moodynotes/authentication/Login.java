@@ -23,15 +23,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mustafabaser.moodynotes.MainActivity;
 import com.mustafabaser.moodynotes.R;
-import com.mustafabaser.moodynotes.Splash;
-
-import org.w3c.dom.Text;
 
 public class Login extends AppCompatActivity {
 
     EditText lEmail, lPassword;
     Button loginNow;
-    TextView forgetPass, createAcc;
+    TextView forgotPass, createAcc;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     ProgressBar spinner;
@@ -47,10 +44,10 @@ public class Login extends AppCompatActivity {
         lEmail = findViewById(R.id.email);
         lPassword = findViewById(R.id.lPassword);
         loginNow = findViewById(R.id.loginBtn);
-        forgetPass = findViewById(R.id.forgotPasword);
+        forgotPass = findViewById(R.id.forgotPasword);
         createAcc = findViewById(R.id.createAccount);
 
-        spinner = findViewById(R.id.progressBar3);
+        spinner = findViewById(R.id.progressBar6);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -111,6 +108,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
+            }
+        });
+
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
             }
         });
     }
