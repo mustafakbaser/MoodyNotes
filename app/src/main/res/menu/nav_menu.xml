@@ -21,18 +21,16 @@
 
     </item>
     <item
-        android:title="@string/navbar_support"
-        android:visible="false">
+        android:title="@string/navbar_support">
         <menu>
-            <item
-                android:id="@+id/rating"
-                android:icon="@drawable/ic_star_half_black_24dp"
-                android:title="@string/navbar_rate_us"
-                android:visible="false" />
             <item
                 android:id="@+id/shareapp"
                 android:icon="@drawable/ic_share_black_24dp"
                 android:title="@string/navbar_share" />
+            <item
+                android:id="@+id/rating"
+                android:icon="@drawable/ic_star_half_black_24dp"
+                android:title="@string/navbar_rate_us" />
         </menu>
 
     </item>

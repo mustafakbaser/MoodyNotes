@@ -70,5 +70,7 @@
     <string name="forgotpassword_send_my_password">Şifremi Gönder</string>
     <string name="forgetpass_reset_my_pass">Şifremi Unuttum</string>
     <string name="forgotpass_password_send_to_your_mail">Şifreniz e-mail adresinize gönderildi!</string>
+    <string name="shareapp_message">" Size çok harika bir uygulama öneriyorum: Moody Notes, yepyeni bir not deneyimi! Moody Notes ile notlarınız kaybolmasın, tüm Android cihazlarınızdan kontrol edin, oluşturun, güncelleyin!  "</string>
+    <string name="shareapp_choose_one">Birini seçin</string>
 
 </resources>

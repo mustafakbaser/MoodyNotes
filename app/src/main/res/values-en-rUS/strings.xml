@@ -69,4 +69,6 @@
     <string name="forgotpassword_send_my_password">Send My Password</string>
     <string name="forgetpass_reset_my_pass">Forgot Password</string>
     <string name="forgotpass_password_send_to_your_mail">Your password has been sent to your email address!</string>
+    <string name="shareapp_message">I suggest you a great application: Moody Notes, a brand new note experience! Don\'t lose your notes with Moody Notes, check, create, update from all your Android devices!</string>
+    <string name="shareapp_choose_one">Choose one</string>
 </resources>
