@@ -47,8 +47,6 @@ import com.mustafabaser.moodynotes.note.AddNote;
 import com.mustafabaser.moodynotes.note.EditNote;
 import com.mustafabaser.moodynotes.note.NoteDetails;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -64,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirestoreRecyclerAdapter<Note,NoteViewHolder> noteAdapter;
     FirebaseUser user;
     FirebaseAuth fAuth;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        navigationView = findViewById(R.id.nav_view);
         fAuth = FirebaseAuth.getInstance();
         user = fAuth.getCurrentUser();
         fStore = FirebaseFirestore.getInstance();
@@ -176,9 +176,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(user.isAnonymous()) {
             navUserEmail.setVisibility(View.GONE);
             navUserName.setText(R.string.not_logged_in);
+            navigationView.getMenu().findItem(R.id.logout).setVisible(false);
+            navigationView.getMenu().findItem(R.id.sync).setVisible(true);
         }else{
             navUserName.setText(user.getDisplayName());
             navUserEmail.setText(user.getEmail());
+            navigationView.getMenu().findItem(R.id.logout).setVisible(true);
+            navigationView.getMenu().findItem(R.id.sync).setVisible(false);
         }
 
         FloatingActionButton fab = findViewById(R.id.addNoteFloat);
@@ -189,7 +193,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
             }
         });
-
     }
 
     @Override
@@ -316,14 +319,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             List<Integer> colorCode = new ArrayList<>();
             colorCode.add(R.color.blue);
             colorCode.add(R.color.yellow);
-            /*colorCode.add(R.color.skyblue);
-            colorCode.add(R.color.lightPurple);
-            colorCode.add(R.color.lightGreen);
-            colorCode.add(R.color.gray);
-            colorCode.add(R.color.pink);
-            colorCode.add(R.color.red);
-            colorCode.add(R.color.greenlight);
-            colorCode.add(R.color.notgreen);*/
 
             Random randomColor = new Random();
             int number = randomColor.nextInt(colorCode.size());

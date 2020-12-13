@@ -23,12 +23,12 @@
     <string name="navbar_general_title">General</string>
     <string name="navbar_my_notes">My Notes</string>
     <string name="navbar_add_note">Add Note</string>
-    <string name="navbar_synchronize">Sync</string>
+    <string name="navbar_synchronize">Login</string>
     <string name="navbar_support">Support</string>
     <string name="navbar_rate_us">Rate Us</string>
     <string name="navbar_share">Share MoodyNotes</string>
-    <string name="navbar_clear_Title">Clear (Sign out)</string>
-    <string name="navbar_clear">Clear</string>
+    <string name="navbar_clear_Title">Session</string>
+    <string name="navbar_clear">Sign Out</string>
     <string name="sozlesme_detaylari">DKS Apps and MoodyNotes are not responsible for errors that may occur by the user or application for the Moody Notes application published by DKS Apps. We are absolutely not responsible for your notes being deleted, lost or attacked by third parties as a result of an attack on our Google Firebase supported database. It is strictly a crime to use the vulnerabilities that may be found in the application, not to inform us and to share them outside. This Privacy Agreement may be modified. Any changes to the Confidentiality Agreement will be posted on the site. All information sent to the user through the site is subject to the terms and conditions of the Confidentiality Agreement, as amended. Anyone using this application (MoodyNotes) is deemed to have accepted the articles in the Confidentiality Agreement.</string>
     <string name="sozlesme">Privacy Policy and Terms of Service</string>
     <string name="onay">By using MoodyNotes, you accept the Privacy Policy</string>

@@ -11,12 +11,6 @@
                 android:id="@+id/addNote"
                 android:icon="@drawable/ic_add_circle_black_24dp"
                 android:title="@string/navbar_add_note" />
-            <item
-                android:id="@+id/sync"
-                android:icon="@drawable/ic_sync_black_24dp"
-                android:title="@string/navbar_synchronize" />
-
-
         </menu>
 
     </item>
@@ -32,15 +26,17 @@
                 android:icon="@drawable/ic_star_half_black_24dp"
                 android:title="@string/navbar_rate_us" />
         </menu>
-
     </item>
     <item android:title="@string/navbar_clear_Title">
         <menu>
+            <item
+                android:id="@+id/sync"
+                android:icon="@drawable/ic_sync_black_24dp"
+                android:title="@string/navbar_synchronize" />
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_exit_to_app_black_24dp"
                 android:title="@string/navbar_clear" />
         </menu>
-
     </item>
 </menu>
