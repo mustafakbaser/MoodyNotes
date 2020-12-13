@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Moody Notes</string>
+    <string name="app_name">My Notes - Notepad</string>
     <string name="options_refresh">Refresh</string>
     <string name="navbarheader_name">Mustafa K. Baser</string>
     <string name="navbarheader_description">A Brand New Notebook Experience</string>
@@ -35,8 +35,8 @@
     <string name="notlarim">Back To Notes</string>
     <string name="title_activity_add_note">Add Note</string>
     <string name="title_activity_note_details">Note Details</string>
-    <string name="close">Close</string>
-    <string name="open">Open</string>
+    <string name="close">close</string>
+    <string name="open">open</string>
     <string name="note_updated">Note updated!</string>
     <string name="error_try_again">Error, please try again!</string>
     <string name="error_note_title">You cannot save a new note without entering a note or title!</string>
