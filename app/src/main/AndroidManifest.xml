@@ -26,15 +26,21 @@
             android:name=".MainActivity"
             android:label="@string/navbar_my_notes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".authentication.Register" />
-        <activity android:name=".authentication.Login" />
+        <activity
+            android:name=".authentication.Register"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".authentication.Login"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".note.EditNote"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".note.AddNote"
             android:label="@string/title_activity_add_note"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".note.NoteDetails"
             android:label="@string/title_activity_note_details"
@@ -44,5 +50,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>
