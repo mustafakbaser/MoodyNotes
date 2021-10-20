@@ -22,7 +22,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     List<String> content;
 
 
-    public Adapter(List<String> title, List<String> content){
+    public Adapter(List<String> title, List<String> content) {
         this.titles = title;
         this.content = content;
     }
@@ -30,7 +30,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view_layout, parent, false);
         return new ViewHolder(view);
     }
 
@@ -39,14 +39,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.noteTitle.setText(titles.get(position));
         holder.noteContent.setText(content.get(position));
         final int code = getRandomColor();
-        holder.mCardView.setCardBackgroundColor(holder.view.getResources().getColor(code,null));
+        holder.mCardView.setCardBackgroundColor(holder.view.getResources().getColor(code, null));
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), NoteDetails.class);
-                intent.putExtra("title",titles.get(position));
-                intent.putExtra("content",content.get(position));
+                intent.putExtra("title", titles.get(position));
+                intent.putExtra("content", content.get(position));
                 intent.putExtra("code", code);
                 v.getContext().startActivity(intent);
             }
@@ -76,7 +76,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return titles.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView noteTitle, noteContent;
         View view;
         CardView mCardView;

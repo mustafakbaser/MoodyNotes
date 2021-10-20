@@ -1,11 +1,15 @@
 package com.mustafabaser.moodynotes;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
+
 import android.content.Intent;
 import android.os.Handler;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -26,10 +30,10 @@ public class Splash extends AppCompatActivity {
             @Override
             public void run() {
                 // giriş yapıp yapmadığını kontrol edecek
-                if(fAuth.getCurrentUser() != null){
+                if (fAuth.getCurrentUser() != null) {
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
-                }else {
+                } else {
                     // yeni anonim hesap
                     fAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
@@ -47,6 +51,6 @@ public class Splash extends AppCompatActivity {
                     });
                 }
             }
-        },3000);
+        }, 3000);
     }
 }

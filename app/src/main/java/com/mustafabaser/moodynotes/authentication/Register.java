@@ -65,16 +65,16 @@ public class Register extends AppCompatActivity {
                 String uUserPass = rUserPass.getText().toString();
                 String uConfPass = rUserConfPass.getText().toString();
 
-                if(uUserName.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty() || uUserEmail.isEmpty()){
+                if (uUserName.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty() || uUserEmail.isEmpty()) {
                     Toast.makeText(Register.this, R.string.register_empty_field, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!uUserPass.equals(uConfPass)){
+                if (!uUserPass.equals(uConfPass)) {
                     rUserConfPass.setError(getString(R.string.register_pass_doesnot_match));
                 }
                 progressBar.setVisibility(View.VISIBLE);
 
-                AuthCredential credential = EmailAuthProvider.getCredential(uUserEmail,uUserPass);
+                AuthCredential credential = EmailAuthProvider.getCredential(uUserEmail, uUserPass);
                 fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
@@ -86,9 +86,9 @@ public class Register extends AppCompatActivity {
                                 .setDisplayName(uUserName) // buraya bi dön
                                 .build();
                         userNav.updateProfile(request);
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                        overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
                         finish();
 
 

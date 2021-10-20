@@ -165,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
-
         noteLists.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)); //spanCount yazan yere yan yana kaç not olacağını yazıyorum.
         noteLists.setAdapter(noteAdapter);
 
