@@ -51,7 +51,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView noteLists;
     Adapter adapter;
     FirebaseFirestore fStore;
-    FirestoreRecyclerAdapter<Note,NoteViewHolder> noteAdapter;
+    FirestoreRecyclerAdapter<Note, NoteViewHolder> noteAdapter;
     FirebaseUser user;
     FirebaseAuth fAuth;
     NavigationView navigationView;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
-                .setQuery(query,Note.class)
+                .setQuery(query, Note.class)
                 .build();
 
         noteAdapter = new FirestoreRecyclerAdapter<Note, NoteViewHolder>(allNotes) {
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
                 final int code = getRandomColor();
-                noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code,null));
+                noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));
                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
 
                 noteViewHolder.view.setOnClickListener(new View.OnClickListener() {
@@ -106,12 +106,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
 
                 ImageView menuIcon = noteViewHolder.view.findViewById(R.id.menuIcon);
-                menuIcon.setOnClickListener(new View.OnClickListener(){
+                menuIcon.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(final View v) {
                         final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
-                        PopupMenu menu = new PopupMenu(v.getContext(),v);
+                        PopupMenu menu = new PopupMenu(v.getContext(), v);
                         menu.setGravity(Gravity.END);
                         menu.getMenu().add(R.string.edit).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                             @Override
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @NonNull
             @Override
             public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view_layout,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_view_layout, parent, false);
                 return new NoteViewHolder(view);
             }
         };
@@ -160,25 +160,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer);
         nav_view = findViewById(R.id.nav_view);
         nav_view.setNavigationItemSelectedListener(this);
-        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open,R.string.close);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
 
-        noteLists.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)); //spanCount yazan yere yan yana kaç not olacağını yazıyorum.
+        noteLists.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)); //spanCount yazan yere yan yana kaç not olacağını yazıyorum.
         noteLists.setAdapter(noteAdapter);
 
         View headerView = nav_view.getHeaderView(0);
         TextView navUserName = headerView.findViewById(R.id.userDisplayName);
         TextView navUserEmail = headerView.findViewById(R.id.userDisplayEmail);
 
-        if(user.isAnonymous()) {
+        if (user.isAnonymous()) {
             navUserEmail.setVisibility(View.GONE);
             navUserName.setText(R.string.not_logged_in);
             navigationView.getMenu().findItem(R.id.logout).setVisible(false);
             navigationView.getMenu().findItem(R.id.sync).setVisible(true);
-        }else{
+        } else {
             navUserName.setText(user.getDisplayName());
             navUserEmail.setText(user.getEmail());
             navigationView.getMenu().findItem(R.id.logout).setVisible(true);
@@ -188,9 +188,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FloatingActionButton fab = findViewById(R.id.addNoteFloat);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View  view){
+            public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), AddNote.class));
-                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
             }
         });
     }
@@ -198,44 +198,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         drawerLayout.closeDrawer(GravityCompat.START);
-        switch ((menuItem.getItemId())){
+        switch ((menuItem.getItemId())) {
             case R.id.notes:
                 //startActivity(new Intent(this, MainActivity.class));
                 break;
 
             case R.id.addNote:
                 startActivity(new Intent(this, AddNote.class));
-                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
                 break;
 
             case R.id.sync:
-                if(user.isAnonymous()){
+                if (user.isAnonymous()) {
                     startActivity(new Intent(this, Login.class));
-                    overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
-                }else{
+                    overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+                } else {
                     Toast.makeText(this, R.string.already_sync, Toast.LENGTH_SHORT).show();
                 }
                 break;
 
             case R.id.rating:
-                try{
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+getPackageName())));
-                }
-                catch (ActivityNotFoundException e){
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
                 }
                 break;
 
-            case  R.id.shareapp:
+            case R.id.shareapp:
                 try {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
-                    String shareMessage= getString(R.string.shareapp_message);
-                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    String shareMessage = getString(R.string.shareapp_message);
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n";
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, getString(R.string.shareapp_choose_one)));
-                } catch(Exception e) {
+                } catch (Exception e) {
                     //e.toString();
                 }
 
@@ -245,19 +244,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             default:
-                Toast.makeText(this,"MoodyNotes",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "MoodyNotes", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
 
     private void checkUser() {
-        // kullanıcı gerçek mi yoksa değil mi
-        if(user.isAnonymous()) {
+        //Kullanıcı anonim kontrol
+        if (user.isAnonymous()) {
             displayAlert();
-        }else{
+        } else {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), Splash.class));
-            overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
         }
     }
 
@@ -278,8 +277,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                startActivity(new Intent(getApplicationContext(),Splash.class));
-                                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
+                                startActivity(new Intent(getApplicationContext(), Splash.class));
+                                overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
                             }
                         });
                     }
@@ -290,19 +289,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu,menu);
+        inflater.inflate(R.menu.options_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.settings){
+        if (item.getItemId() == R.id.settings) {
             Toast.makeText(this, R.string.notes_sync_successfully, Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder{
+    public class NoteViewHolder extends RecyclerView.ViewHolder {
         TextView noteTitle, noteContent;
         View view;
         CardView mCardView;
@@ -315,27 +314,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             view = itemView;
         }
     }
-        private int getRandomColor() {
-            List<Integer> colorCode = new ArrayList<>();
-            colorCode.add(R.color.blue);
-            colorCode.add(R.color.yellow);
 
-            Random randomColor = new Random();
-            int number = randomColor.nextInt(colorCode.size());
-            return colorCode.get(number);
-        }
+    private int getRandomColor() {
+        List<Integer> colorCode = new ArrayList<>();
+        colorCode.add(R.color.blue);
+        colorCode.add(R.color.yellow);
 
-        @Override
-        protected void onStart(){
-            super.onStart();
-            noteAdapter.startListening();
-        }
+        Random randomColor = new Random();
+        int number = randomColor.nextInt(colorCode.size());
+        return colorCode.get(number);
+    }
 
-        @Override
-        protected void onStop(){
-            super.onStop();
-            if(noteAdapter != null){
-                noteAdapter.stopListening();
-            }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        noteAdapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (noteAdapter != null) {
+            noteAdapter.stopListening();
         }
+    }
 }
