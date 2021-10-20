@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".authentication.ForgotPassword"></activity>
         <activity
             android:name=".Splash"
             android:theme="@style/AppTheme.NoActionBar">
@@ -32,6 +31,7 @@
         <activity
             android:name=".authentication.Login"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".authentication.ForgotPassword" />
         <activity
             android:name=".note.EditNote"
             android:theme="@style/AppTheme.NoActionBar"
@@ -45,7 +45,6 @@
             android:name=".note.NoteDetails"
             android:label="@string/title_activity_note_details"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
