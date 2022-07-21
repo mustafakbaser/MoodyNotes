@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseUser user;
     FirebaseAuth fAuth;
     NavigationView navigationView;
-    Switch switchOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,15 +217,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, R.string.already_sync, Toast.LENGTH_SHORT).show();
                 }
                 break;
-
-            case R.id.options:
-            try{
-                startActivity(new Intent(getApplicationContext(), Options.class));
-                finish();
-            }catch(ActivityNotFoundException e){
-                Toast.makeText(this, R.string.already_sync, Toast.LENGTH_SHORT).show();
-            }
-            break;
 
             case R.id.rating:
                 try {
