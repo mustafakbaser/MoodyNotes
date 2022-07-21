@@ -73,5 +73,4 @@
     <string name="shareapp_choose_one">Birini seçin</string>
     <string name="privacyPolicyNotify">Kayıt Ol butonuna tıklayarak Gizlilik Sözleşmesi\'ni kabul ettiğinizi beyan edersiniz.</string>
     <string name="Privacy_Policy">Gizlilik Sözleşmesi</string>
-    <string name="notes_sync_successfully">Notlar senkronize edildi.</string>
 </resources>
