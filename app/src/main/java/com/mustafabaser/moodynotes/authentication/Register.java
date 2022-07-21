@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.mustafabaser.moodynotes.MainActivity;
+import com.mustafabaser.moodynotes.PrivacyPolicy;
 import com.mustafabaser.moodynotes.R;
 
 public class Register extends AppCompatActivity {
@@ -109,5 +110,11 @@ public class Register extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
         finish();
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void PrivacyPolicy(View view) {
+        startActivity(new Intent(this, PrivacyPolicy.class));
+        finish();
     }
 }

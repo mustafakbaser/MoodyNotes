@@ -18,6 +18,10 @@
         android:title="@string/navbar_support">
         <menu>
             <item
+                android:id="@+id/options"
+                android:icon="@drawable/ic_settings_24"
+                android:title="Seçenekler" />
+            <item
                 android:id="@+id/shareapp"
                 android:icon="@drawable/ic_share_black_24dp"
                 android:title="@string/navbar_share" />

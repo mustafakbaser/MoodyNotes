@@ -57,14 +57,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         List<Integer> colorCode = new ArrayList<>();
         colorCode.add(R.color.blue);
         colorCode.add(R.color.yellow);
-        colorCode.add(R.color.skyblue);
-        colorCode.add(R.color.lightPurple);
-        colorCode.add(R.color.lightGreen);
-        colorCode.add(R.color.gray);
-        colorCode.add(R.color.pink);
-        colorCode.add(R.color.red);
-        colorCode.add(R.color.greenlight);
-        colorCode.add(R.color.notgreen);
 
         Random randomColor = new Random();
         int number = randomColor.nextInt(colorCode.size());

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Notes - Notepad</string>
+    <string name="app_name">My Notes</string>
     <string name="options_refresh">Refresh</string>
-    <string name="navbarheader_name">Mustafa K. Baser</string>
+    <string name="navbarheader_name">DKS Apps</string>
     <string name="navbarheader_description">A Brand New Notebook Experience</string>
-    <string name="navbarheader_email">iletisim@mustafabaser.net</string>
+    <string name="navbarheader_email">You are not logged in</string>
     <string name="addnote_start_writing">Start writing…</string>
     <string name="addnote_unnamed_note">Unnamed Note</string>
     <string name="login_create_new_acc">New Here? Create New Account</string>
@@ -31,7 +31,7 @@
     <string name="navbar_clear">Sign Out</string>
     <string name="sozlesme_detaylari">DKS Apps and MoodyNotes are not responsible for errors that may occur by the user or application for the Moody Notes application published by DKS Apps. We are absolutely not responsible for your notes being deleted, lost or attacked by third parties as a result of an attack on our Google Firebase supported database. It is strictly a crime to use the vulnerabilities that may be found in the application, not to inform us and to share them outside. This Privacy Agreement may be modified. Any changes to the Confidentiality Agreement will be posted on the site. All information sent to the user through the site is subject to the terms and conditions of the Confidentiality Agreement, as amended. Anyone using this application (MoodyNotes) is deemed to have accepted the articles in the Confidentiality Agreement.</string>
     <string name="sozlesme">Privacy Policy and Terms of Service</string>
-    <string name="onay">By using MoodyNotes, you accept the Privacy Policy</string>
+    <string name="onay">By using this app, you accept the Privacy Policy</string>
     <string name="notlarim">Back To Notes</string>
     <string name="title_activity_add_note">Add Note</string>
     <string name="title_activity_note_details">Note Details</string>
@@ -71,4 +71,6 @@
     <string name="forgotpass_password_send_to_your_mail">Your password has been sent to your email address!</string>
     <string name="shareapp_message">I suggest you a great application: Moody Notes, a brand new note experience! Don\'t lose your notes with Moody Notes, check, create, update from all your Android devices!</string>
     <string name="shareapp_choose_one">Choose one</string>
+    <string name="privacyPolicyNotify">By clicking the Register button, you declare that you accept the Privacy Policy.</string>
+    <string name="Privacy_Policy">Privacy Policy</string>
 </resources>

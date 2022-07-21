@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseUser user;
     FirebaseAuth fAuth;
     NavigationView navigationView;
+    Switch switchOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,6 +219,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 break;
 
+            case R.id.options:
+            try{
+                startActivity(new Intent(getApplicationContext(), Options.class));
+                finish();
+            }catch(ActivityNotFoundException e){
+                Toast.makeText(this, R.string.already_sync, Toast.LENGTH_SHORT).show();
+            }
+            break;
+
             case R.id.rating:
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
@@ -337,4 +349,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             noteAdapter.stopListening();
         }
     }
+
+
 }
