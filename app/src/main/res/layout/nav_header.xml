@@ -7,35 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/cover">
-
-        <TextView
-            android:id="@+id/userDisplayEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/abel"
-            android:text="@string/navbarheader_email"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userDisplayName" />
-
-        <TextView
-            android:id="@+id/userDisplayName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/abel"
-            android:text="@string/navbarheader_name"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.072"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/definitionText" />
+        android:layout_height="180dp"
+        android:background="@color/colorPrimary">
 
         <TextView
             android:id="@+id/moodyNotesText"
@@ -52,18 +25,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/definitionText"
+            android:id="@+id/userDisplayName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/abel"
-            android:text="@string/navbarheader_description"
+            android:text="@string/navbarheader_name"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/moodyNotesText" />
+
+        <TextView
+            android:id="@+id/userDisplayEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/abel"
+            android:text="@string/navbarheader_email"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userDisplayName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
