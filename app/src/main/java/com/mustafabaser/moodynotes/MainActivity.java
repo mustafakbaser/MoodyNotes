@@ -12,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -78,9 +79,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user = fAuth.getCurrentUser();
         fStore = FirebaseFirestore.getInstance();
 
-        //Query notes > uuid > notlarim olmasını sağlayacağım
+        //Query notes > uuid > notlarim (Firestore note structure)
         Query query = fStore.collection("notes").document(user.getUid()).collection("notlarim").orderBy("title", Query.Direction.ASCENDING);
-
 
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query, Note.class)
@@ -88,13 +88,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         noteAdapter = new FirestoreRecyclerAdapter<Note, NoteViewHolder>(allNotes) {
             @Override
-            protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, final int i, @NonNull final Note note) {
+            protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, @SuppressLint("RecyclerView") final int i, @NonNull final Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
                 final int code = getRandomColor();
                 noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));
-                final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
-
+                final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId(); // get.Snapshot(noteViewHolder.getBindingAdapterPosition())
                 noteViewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -339,6 +338,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             noteAdapter.stopListening();
         }
     }
-
-
 }

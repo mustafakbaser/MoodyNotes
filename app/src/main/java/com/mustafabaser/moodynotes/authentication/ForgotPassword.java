@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -41,21 +42,37 @@ public class ForgotPassword extends AppCompatActivity {
         userPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                firebaseAuth.sendPasswordResetEmail(userEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ForgotPassword.this, R.string.forgotpass_password_send_to_your_mail, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(ForgotPassword.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                // Hiding the keyboard when clicked the button
+                try {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+
+                if (userEmail.getText().toString().isEmpty()) {
+                    Toast.makeText(ForgotPassword.this, R.string.login_empty_field, Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                    try {
+                    firebaseAuth.sendPasswordResetEmail(userEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            progressBar.setVisibility(View.GONE);
+                            if (task.isSuccessful()) {
+                                Toast.makeText(ForgotPassword.this, R.string.forgotpass_password_send_to_your_mail, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ForgotPassword.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
                         }
+                    });
+                    } catch (Exception e) {
+                        // TODO: handle exception
                     }
-                });
+                }
             }
         });
-
     }
 
     @Override

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mustafabaser.moodynotes">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,11 +14,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".PrivacyPolicy"
-            android:label="@string/Privacy_Policy"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/Privacy_Policy" />
         <activity
             android:name=".Splash"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

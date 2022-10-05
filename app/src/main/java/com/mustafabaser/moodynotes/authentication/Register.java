@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -66,10 +67,19 @@ public class Register extends AppCompatActivity {
                 String uUserPass = rUserPass.getText().toString();
                 String uConfPass = rUserConfPass.getText().toString();
 
+                // Hiding the keyboard when clicked the button
+                try {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+
                 if (uUserName.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty() || uUserEmail.isEmpty()) {
                     Toast.makeText(Register.this, R.string.register_empty_field, Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 if (!uUserPass.equals(uConfPass)) {
                     rUserConfPass.setError(getString(R.string.register_pass_doesnot_match));
                 }

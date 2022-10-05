@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/abel"
-        android:text="@string/moody_notes"
+        android:text="@string/navbar_my_notes"
         android:textColor="#363636"
         android:textSize="50sp"
         android:textStyle="bold"

@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -60,12 +62,20 @@ public class Login extends AppCompatActivity {
                 String mEmail = lEmail.getText().toString();
                 String mPassword = lPassword.getText().toString();
 
+                // Hiding the keyboard when clicked the button
+                try {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+
                 if (mEmail.isEmpty() || mPassword.isEmpty()) {
                     Toast.makeText(Login.this, R.string.login_empty_field, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // ilk girişte tüm anonim notları silmek
+                // Deleting anonymous notes when the first login
                 spinner.setVisibility(View.VISIBLE);
 
                 if (fAuth.getCurrentUser().isAnonymous()) {
@@ -78,8 +88,7 @@ public class Login extends AppCompatActivity {
                         }
                     });
 
-                    //anonim hesapları silmek
-
+                    //Deleting the anonymous account
                     user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
