@@ -1,5 +1,6 @@
 package com.mustafabaser.moodynotes.note;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ import com.mustafabaser.moodynotes.R;
 import com.mustafabaser.moodynotes.model.Note;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -90,22 +92,33 @@ public class NoteDetails extends AppCompatActivity {
             intent.putExtra("noteId",data.getStringExtra("noteId"));
             startActivity(intent);
         }
+        // Delete Note
         if(item.getItemId() == R.id.deleteNote){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             String docId = data.getStringExtra("noteId");
-            DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(docId);
-            docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(NoteDetails.this, R.string.note_deleted, Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(NoteDetails.this, R.string.note_not_deleted, Toast.LENGTH_SHORT).show();
-                }
-            });
+            new AlertDialog.Builder(this)
+                    .setIcon(R.drawable.ic_baseline_delete_black_24)
+                    .setTitle(R.string.areyousure)
+                    .setMessage("Notu silmek istiyor musunuz?")
+                    .setPositiveButton("Sil", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(docId);
+                            docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(NoteDetails.this, R.string.note_deleted, Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(NoteDetails.this, R.string.note_not_deleted, Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("Vazgeç", null)
+                    .show();
         }
         return super.onOptionsItemSelected(item);
     }
