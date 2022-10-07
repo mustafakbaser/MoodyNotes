@@ -6,6 +6,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -70,8 +73,7 @@ public class EditNote extends AppCompatActivity {
 
                 spinner.setVisibility(View.VISIBLE);
 
-                // notu kaydet
-
+                // Save Note
                 DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(data.getStringExtra("noteId"));
                 Map<String, Object> note = new HashMap<>();
                 note.put("title", nTitle);
@@ -93,5 +95,21 @@ public class EditNote extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.close_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.close){
+            Toast.makeText(this, R.string.updates_cancelled, Toast.LENGTH_SHORT).show();
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

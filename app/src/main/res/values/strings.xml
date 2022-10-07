@@ -76,5 +76,6 @@
     <string name="Privacy_Policy">Privacy Policy</string>
     <string name="closingAppAlert">Do you want to close the app?</string>
     <string name="No">No</string>
+    <string name="updates_cancelled">Changes canceled!</string>
 
 </resources>

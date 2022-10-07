@@ -111,6 +111,8 @@ public class Login extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(Login.this, getString(R.string.login_unsuccessful) + e.getMessage(), Toast.LENGTH_SHORT).show();
                         spinner.setVisibility(View.GONE);
+                        lEmail.setText("");
+                        lPassword.setText("");
                     }
                 });
             }

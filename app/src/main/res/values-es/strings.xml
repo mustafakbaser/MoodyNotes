@@ -75,4 +75,5 @@
     <string name="Privacy_Policy">acuerdo de confidencialidad</string>
     <string name="closingAppAlert">¿Quieres cerrar la aplicación?</string>
     <string name="No">No</string>
+    <string name="updates_cancelled">¡Cambios cancelados!</string>
 </resources>

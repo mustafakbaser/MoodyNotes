@@ -75,4 +75,5 @@
     <string name="Privacy_Policy">Gizlilik Sözleşmesi</string>
     <string name="closingAppAlert">Uygulamayı kapatmak mı istiyorsunuz?</string>
     <string name="No">Hayır</string>
+    <string name="updates_cancelled">Değişiklikler iptal edildi!</string>
 </resources>

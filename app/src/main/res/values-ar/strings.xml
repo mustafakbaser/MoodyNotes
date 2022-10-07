@@ -75,4 +75,5 @@
     <string name="Privacy_Policy">اتفاق السرية</string>
     <string name="closingAppAlert">هل تريد إغلاق التطبيق؟</string>
     <string name="No">رقم</string>
+    <string name="updates_cancelled">تم إلغاء التغييرات!</string>
 </resources>

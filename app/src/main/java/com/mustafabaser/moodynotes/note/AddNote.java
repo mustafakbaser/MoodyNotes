@@ -60,8 +60,7 @@ public class AddNote extends AppCompatActivity {
 
                 progressBarSave.setVisibility(View.VISIBLE);
 
-                // notu kaydet
-
+                // Save Note
                 DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("notlarim").document();
                 Map<String, Object> note = new HashMap<>();
                 note.put("title", nTitle);
