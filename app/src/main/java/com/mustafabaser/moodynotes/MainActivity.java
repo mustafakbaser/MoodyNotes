@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             default:
-                Toast.makeText(this, "MoodyNotes", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Moody Notes", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
@@ -295,8 +295,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.settings) {
-            Toast.makeText(this, R.string.notes_sync_successfully, Toast.LENGTH_SHORT).show();
+        if (item.getItemId() == R.id.writeNote) {
+            startActivity(new Intent(this, AddNote.class));
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -337,5 +338,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (noteAdapter != null) {
             noteAdapter.stopListening();
         }
+    }
+
+    // App-Closing Alert
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                //.setIcon(R.drawable.ic_exit_to_app_black_24dp)
+                .setTitle(R.string.areyousure)
+                .setMessage(R.string.closingAppAlert)
+                .setPositiveButton(R.string.close, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Hayır", null)
+                .show();
     }
 }

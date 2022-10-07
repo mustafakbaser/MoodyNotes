@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">мои заметки</string>
+    <string name="app_name">заметки</string>
     <string name="open">голодный</string>
     <string name="close">Закрыть</string>
     <string name="title_activity_note_details">Примечание Подробности</string>
@@ -50,12 +50,12 @@
     <string name="clear">Чистый</string>
     <string name="notes_sync_successfully">Заметки синхронизированы.</string>
     <string name="note_not_sync_alert">Ваши заметки не будут привязаны к учетной записи.</string>
-    <string name="error">\"Ошибка! \"</string>
+    <string name="error">Ошибка!</string>
     <string name="edit">Редактировать</string>
     <string name="delete">Удалить</string>
     <string name="not_logged_in">Не авторизован</string>
     <string name="connect_new_account">При подключении к другой учетной записи все сохраненные заметки будут удалены. Создайте новую учетную запись, чтобы сохранить их.</string>
-    <string name="login_unsuccessful">\"Авторизация не удалась!\"</string>
+    <string name="login_unsuccessful">Авторизация не удалась!</string>
     <string name="login_successful">Успешный вход в систему!</string>
     <string name="login_anon_acc_deleted">Учетная запись анонимного пользователя удалена.</string>
     <string name="login_anon_notes_deleted">Анонимные заметки удалены.</string>
@@ -73,4 +73,6 @@
     <string name="shareapp_choose_one">Выберите один из них</string>
     <string name="privacyPolicyNotify">Нажимая кнопку «Зарегистрироваться», вы заявляете, что принимаете Политику конфиденциальности.</string>
     <string name="Privacy_Policy">соглашение о конфиденциальности</string>
+    <string name="closingAppAlert">Вы хотите закрыть приложение?</string>
+    <string name="No">Нет</string>
 </resources>

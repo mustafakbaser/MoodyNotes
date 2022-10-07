@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mes Notes</string>
+    <string name="app_name">Notes</string>
     <string name="open">faim</string>
-    <string name="close">proche</string>
+    <string name="close">Proche</string>
     <string name="title_activity_note_details">Note Détails</string>
     <string name="title_activity_add_note">Ajouter une note</string>
     <string name="notlarim">Retour à Mes notes</string>
@@ -50,12 +50,12 @@
     <string name="clear">Nettoyer</string>
     <string name="notes_sync_successfully">Notes synchronisées.</string>
     <string name="note_not_sync_alert">Vos notes ne seront pas liées à un compte.</string>
-    <string name="error">\"Erreur! \"</string>
+    <string name="error">Erreur!</string>
     <string name="edit">Éditer</string>
     <string name="delete">effacer</string>
     <string name="not_logged_in">Pas connecté</string>
     <string name="connect_new_account">La connexion à un autre compte supprimera toutes les notes enregistrées. Créez un nouveau compte pour les enregistrer.</string>
-    <string name="login_unsuccessful">\"Échec de la connexion!\"</string>
+    <string name="login_unsuccessful">Échec de la connexion!</string>
     <string name="login_successful">Connexion réussie!</string>
     <string name="login_anon_acc_deleted">Le compte utilisateur anonyme a été supprimé.</string>
     <string name="login_anon_notes_deleted">Les notes anonymes ont été effacées.</string>
@@ -73,4 +73,6 @@
     <string name="shareapp_choose_one">Sélectionnez-en un</string>
     <string name="privacyPolicyNotify">En cliquant sur le bouton S\'inscrire, vous déclarez accepter la politique de confidentialité.</string>
     <string name="Privacy_Policy">accord de confidentialité</string>
+    <string name="closingAppAlert">Voulez-vous fermer l\'application ?</string>
+    <string name="No">Non</string>
 </resources>

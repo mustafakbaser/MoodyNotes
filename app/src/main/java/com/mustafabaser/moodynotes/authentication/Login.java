@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -67,7 +68,8 @@ public class Login extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    Toast.makeText(Login.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if (mEmail.isEmpty() || mPassword.isEmpty()) {

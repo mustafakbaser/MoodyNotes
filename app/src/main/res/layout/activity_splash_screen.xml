@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
-        app:lottie_rawRes="@raw/scscroolbar" />
+        app:lottie_rawRes="@raw/scloadingbar" />
 
     <TextView
         android:id="@+id/textView"

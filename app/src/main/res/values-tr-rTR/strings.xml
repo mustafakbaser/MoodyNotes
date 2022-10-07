@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Notlarım</string>
     <string name="open">aç</string>
-    <string name="close">kapat</string>
+    <string name="close">Kapat</string>
     <string name="title_activity_note_details">Not Detayları</string>
     <string name="title_activity_add_note">Not Ekle</string>
     <string name="notlarim">Notlarıma Dön</string>
@@ -50,12 +50,12 @@
     <string name="clear">Temizle</string>
     <string name="notes_sync_successfully">Notlar senkronize edildi.</string>
     <string name="note_not_sync_alert">Notlarınız bir hesaba bağlanmayacak.</string>
-    <string name="error">\"Hata! \"</string>
+    <string name="error">Hata!</string>
     <string name="edit">Düzenle</string>
     <string name="delete">Sil</string>
     <string name="not_logged_in">Giriş Yapılmadı</string>
     <string name="connect_new_account">Başka bir hesaba bağlanmak, kayıtlı tüm notları silecektir. Onları kaydetmek için yeni hesap oluşturun.</string>
-    <string name="login_unsuccessful">\"Giriş başarısız! \"</string>
+    <string name="login_unsuccessful">Giriş başarısız!</string>
     <string name="login_successful">Giriş başarılı!</string>
     <string name="login_anon_acc_deleted">Anonim kullanıcı hesabı silindi.</string>
     <string name="login_anon_notes_deleted">Anonim notlar temizlendi.</string>
@@ -73,4 +73,6 @@
     <string name="shareapp_choose_one">Birini seçin</string>
     <string name="privacyPolicyNotify">Kayıt Ol butonuna tıklayarak Gizlilik Sözleşmesi\'ni kabul ettiğinizi beyan edersiniz.</string>
     <string name="Privacy_Policy">Gizlilik Sözleşmesi</string>
+    <string name="closingAppAlert">Uygulamayı kapatmak mı istiyorsunuz?</string>
+    <string name="No">Hayır</string>
 </resources>

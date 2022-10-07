@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mis Notas</string>
+    <string name="app_name">Notas</string>
     <string name="open">abierto</string>
-    <string name="close">cerca</string>
+    <string name="close">Cerca</string>
     <string name="title_activity_note_details">Detalles de la nota</string>
     <string name="title_activity_add_note">Añadir la nota</string>
     <string name="notlarim">Volver a notas</string>
@@ -50,12 +50,12 @@
     <string name="clear">Claro</string>
     <string name="notes_sync_successfully">Las notas se sincronizan.</string>
     <string name="note_not_sync_alert">Tus notas no estarán vinculadas a una cuenta.</string>
-    <string name="error">\"¡Error!\"</string>
+    <string name="error">¡Error!</string>
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
     <string name="not_logged_in">Sin iniciar sesión</string>
     <string name="connect_new_account">Al conectarse a otra cuenta, se eliminarán todas las notas guardadas. Crea una nueva cuenta para registrarlos.</string>
-    <string name="login_unsuccessful">\"¡Error de inicio de sesion!\"</string>
+    <string name="login_unsuccessful">¡Error de inicio de sesion!</string>
     <string name="login_successful">Inicio de sesión exitoso!</string>
     <string name="login_anon_acc_deleted">Se ha eliminado la cuenta de usuario anónimo.</string>
     <string name="login_anon_notes_deleted">Se han borrado las notas anónimas.</string>
@@ -73,4 +73,6 @@
     <string name="shareapp_choose_one">Elige uno</string>
     <string name="privacyPolicyNotify">Al hacer clic en el botón Registrarse, declara que acepta la Política de privacidad.</string>
     <string name="Privacy_Policy">acuerdo de confidencialidad</string>
+    <string name="closingAppAlert">¿Quieres cerrar la aplicación?</string>
+    <string name="No">No</string>
 </resources>

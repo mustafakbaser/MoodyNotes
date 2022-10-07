@@ -50,12 +50,12 @@
     <string name="clear">ينظف</string>
     <string name="notes_sync_successfully">تمت مزامنة الملاحظات.</string>
     <string name="note_not_sync_alert">لن يتم ربط ملاحظاتك بأي حساب.</string>
-    <string name="error">\"خطأ! \"</string>
+    <string name="error">"خطأ! "</string>
     <string name="edit">يحرر</string>
     <string name="delete">حذف</string>
     <string name="not_logged_in">لم تقم بتسجيل الدخول</string>
     <string name="connect_new_account">سيؤدي الاتصال بحساب آخر إلى حذف جميع الملاحظات المحفوظة. قم بإنشاء حساب جديد لحفظها.</string>
-    <string name="login_unsuccessful">\"فشل عملية الدخول!\"</string>
+    <string name="login_unsuccessful">فشل عملية الدخول!</string>
     <string name="login_successful">تم تسجيل الدخول بنجاح!</string>
     <string name="login_anon_acc_deleted">تم حذف حساب المستخدم المجهول.</string>
     <string name="login_anon_notes_deleted">تم مسح الملاحظات المجهولة.</string>
@@ -73,4 +73,6 @@
     <string name="shareapp_choose_one">اختر واحدًا منهم</string>
     <string name="privacyPolicyNotify">بالنقر فوق الزر \"تسجيل\" ، فإنك تقر بموافقتك على سياسة الخصوصية.</string>
     <string name="Privacy_Policy">اتفاق السرية</string>
+    <string name="closingAppAlert">هل تريد إغلاق التطبيق؟</string>
+    <string name="No">رقم</string>
 </resources>

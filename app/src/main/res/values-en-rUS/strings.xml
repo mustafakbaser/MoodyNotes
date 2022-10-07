@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Notes</string>
+    <string name="app_name">Notes</string>
     <string name="options_refresh">Refresh</string>
     <string name="navbarheader_name">DKS Apps</string>
     <string name="navbarheader_description">A Brand New Notebook Experience</string>
@@ -35,7 +35,7 @@
     <string name="notlarim">Back To Notes</string>
     <string name="title_activity_add_note">Add Note</string>
     <string name="title_activity_note_details">Note Details</string>
-    <string name="close">close</string>
+    <string name="close">Close</string>
     <string name="open">open</string>
     <string name="note_updated">Note updated!</string>
     <string name="error_try_again">Error, please try again!</string>
@@ -50,12 +50,12 @@
     <string name="clear">Clear</string>
     <string name="notes_sync_successfully">Notes are synced.</string>
     <string name="note_not_sync_alert">Your notes will not be linked to an account.</string>
-    <string name="error">\"Error! \"</string>
+    <string name="error">Error!</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="not_logged_in">Not Logged In</string>
     <string name="connect_new_account">Connecting to another account, all saved notes will be deleted. Create a new account to register them.</string>
-    <string name="login_unsuccessful">\"Login failed!\"</string>
+    <string name="login_unsuccessful">Login failed!</string>
     <string name="login_successful">Login successful!</string>
     <string name="login_anon_acc_deleted">Anonymous user account has been deleted.</string>
     <string name="login_anon_notes_deleted">Anonymous notes have been cleared.</string>
@@ -73,4 +73,6 @@
     <string name="shareapp_choose_one">Choose one</string>
     <string name="privacyPolicyNotify">By clicking the Register button, you declare that you accept the Privacy Policy.</string>
     <string name="Privacy_Policy">Privacy Policy</string>
+    <string name="closingAppAlert">Do you want to close the app?</string>
+    <string name="No">No</string>
 </resources>

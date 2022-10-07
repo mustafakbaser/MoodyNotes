@@ -72,7 +72,8 @@ public class Register extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    Toast.makeText(Register.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if (uUserName.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty() || uUserEmail.isEmpty()) {

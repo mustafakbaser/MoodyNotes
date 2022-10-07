@@ -47,7 +47,8 @@ public class ForgotPassword extends AppCompatActivity {
                     InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    Toast.makeText(ForgotPassword.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if (userEmail.getText().toString().isEmpty()) {
@@ -55,7 +56,6 @@ public class ForgotPassword extends AppCompatActivity {
                     return;
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
-                    try {
                     firebaseAuth.sendPasswordResetEmail(userEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -67,9 +67,6 @@ public class ForgotPassword extends AppCompatActivity {
                             }
                         }
                     });
-                    } catch (Exception e) {
-                        // TODO: handle exception
-                    }
                 }
             }
         });
