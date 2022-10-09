@@ -77,5 +77,7 @@
     <string name="closingAppAlert">Do you want to close the app?</string>
     <string name="No">No</string>
     <string name="updates_cancelled">Changes canceled!</string>
+    <string name="alert_email_spam">Password reset link has been sent via e-mail. Please check your e-mail spam folder.</string>
+    <string name="info">Information</string>
 
 </resources>

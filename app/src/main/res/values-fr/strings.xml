@@ -76,4 +76,6 @@
     <string name="closingAppAlert">Voulez-vous fermer l\'application ?</string>
     <string name="No">Non</string>
     <string name="updates_cancelled">Modifications annulées !</string>
+    <string name="alert_email_spam">Lien de réinitialisation du mot de passe envoyé par e-mail. Veuillez vérifier votre dossier de courrier indésirable.</string>
+    <string name="info">Informations</string>
 </resources>

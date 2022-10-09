@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         finish();
                     }
                 })
-                .setNegativeButton("Hayır", null)
+                .setNegativeButton(R.string.No, null)
                 .show();
     }
 }

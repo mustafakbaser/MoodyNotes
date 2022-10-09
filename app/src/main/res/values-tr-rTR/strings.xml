@@ -76,4 +76,6 @@
     <string name="closingAppAlert">Uygulamayı kapatmak mı istiyorsunuz?</string>
     <string name="No">Hayır</string>
     <string name="updates_cancelled">Değişiklikler iptal edildi!</string>
+    <string name="alert_email_spam">Şifre yenileme bağlantısı e-posta ile gönderildi. Lütfen e-mail spam klasörünüzü kontrol ediniz.</string>
+    <string name="info">Bilgi</string>
 </resources>

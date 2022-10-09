@@ -76,4 +76,6 @@
     <string name="closingAppAlert">هل تريد إغلاق التطبيق؟</string>
     <string name="No">رقم</string>
     <string name="updates_cancelled">تم إلغاء التغييرات!</string>
+    <string name="alert_email_spam">تم إرسال رابط إعادة تعيين كلمة المرور عبر البريد الإلكتروني. يرجى التحقق من مجلد البريد الإلكتروني العشوائي الخاص بك.</string>
+    <string name="info">معلومة</string>
 </resources>

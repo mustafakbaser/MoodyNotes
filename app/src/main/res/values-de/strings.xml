@@ -76,4 +76,6 @@
     <string name="closingAppAlert">Möchten Sie die Anwendung schließen?</string>
     <string name="No">Nein</string>
     <string name="updates_cancelled">Änderungen storniert!</string>
+    <string name="alert_email_spam">Link zum Zurücksetzen des Passworts per E-Mail gesendet. Bitte überprüfen Sie Ihren E-Mail-Spam-Ordner.</string>
+    <string name="info">Information</string>
 </resources>
