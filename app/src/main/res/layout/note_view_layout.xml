@@ -58,7 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:cardBackgroundColor="#3700B3"
+                app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="0dp"
                 app:cardElevation="0dp"
                 app:contentPadding="10dp"
