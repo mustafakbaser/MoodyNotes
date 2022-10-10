@@ -78,4 +78,6 @@
     <string name="updates_cancelled">Değişiklikler iptal edildi!</string>
     <string name="alert_email_spam">Şifre yenileme bağlantısı e-posta ile gönderildi. Lütfen e-mail spam klasörünüzü kontrol ediniz.</string>
     <string name="info">Bilgi</string>
+    <string name="note_delete_message">Bu notu silmek istiyor musunuz?</string>
+    <string name="cancel">İptal</string>
 </resources>

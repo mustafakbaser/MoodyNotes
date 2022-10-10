@@ -78,4 +78,6 @@
     <string name="updates_cancelled">Изменения отменены!</string>
     <string name="alert_email_spam">Ссылка для сброса пароля отправлена ​​по электронной почте. Пожалуйста, проверьте папку со спамом в электронной почте.</string>
     <string name="info">Информация</string>
+    <string name="note_delete_message">Удалить эту заметку?</string>
+    <string name="cancel">Отмена</string>
 </resources>

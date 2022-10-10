@@ -58,7 +58,9 @@ public class NoteDetails extends AppCompatActivity {
 
         content.setText(data.getStringExtra("content"));
         title.setText(data.getStringExtra("title"));
-        content.setBackgroundColor(getResources().getColor(data.getIntExtra("code",0),null));
+
+        // Note layer background color
+        //content.setBackgroundColor(getResources().getColor(data.getIntExtra("code",0),null));
 
         FloatingActionButton fab = findViewById(R.id.editNoteButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +100,8 @@ public class NoteDetails extends AppCompatActivity {
             new AlertDialog.Builder(this)
                     .setIcon(R.drawable.ic_baseline_delete_black_24)
                     .setTitle(R.string.areyousure)
-                    .setMessage("Notu silmek istiyor musunuz?")
-                    .setPositiveButton("Sil", new DialogInterface.OnClickListener(){
+                    .setMessage(R.string.note_delete_message)
+                    .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener(){
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(docId);
@@ -117,7 +119,7 @@ public class NoteDetails extends AppCompatActivity {
                             finish();
                         }
                     })
-                    .setNegativeButton("Vazgeç", null)
+                    .setNegativeButton(R.string.cancel, null)
                     .show();
         }
         return super.onOptionsItemSelected(item);

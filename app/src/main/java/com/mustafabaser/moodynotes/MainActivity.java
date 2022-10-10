@@ -89,8 +89,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, @SuppressLint("RecyclerView") final int i, @NonNull final Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
-                final int code = getRandomColor();
-                noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));
+                // Note layer background color
+                /*final int code = getRandomColor();
+                noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));*/
                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId(); // get.Snapshot(noteViewHolder.getBindingAdapterPosition())
                 noteViewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Intent intent = new Intent(v.getContext(), NoteDetails.class);
                         intent.putExtra("title", note.getTitle());
                         intent.putExtra("content", note.getContent());
-                        intent.putExtra("code", code);
+                        /*intent.putExtra("code", code);*/
                         intent.putExtra("noteId", docId);
                         v.getContext().startActivity(intent);
                     }
@@ -314,7 +315,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private int getRandomColor() {
+    // Note layer background color
+    /*private int getRandomColor() {
         List<Integer> colorCode = new ArrayList<>();
         colorCode.add(R.color.blue);
         colorCode.add(R.color.yellow);
@@ -322,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Random randomColor = new Random();
         int number = randomColor.nextInt(colorCode.size());
         return colorCode.get(number);
-    }
+    }*/
 
     @Override
     protected void onStart() {
