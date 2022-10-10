@@ -57,79 +57,50 @@ public class Login extends AppCompatActivity {
 
         showWarning();
 
-        loginNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String mEmail = lEmail.getText().toString();
-                String mPassword = lPassword.getText().toString();
+        loginNow.setOnClickListener(v -> {
+            String mEmail = lEmail.getText().toString();
+            String mPassword = lPassword.getText().toString();
 
-                // Hiding the keyboard when clicked the button
-                try {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                } catch (Exception e) {
-                    Toast.makeText(Login.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (mEmail.isEmpty() || mPassword.isEmpty()) {
-                    Toast.makeText(Login.this, R.string.login_empty_field, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Deleting anonymous notes when the first login
-                spinner.setVisibility(View.VISIBLE);
-
-                if (fAuth.getCurrentUser().isAnonymous()) {
-                    FirebaseUser user = fAuth.getCurrentUser();
-
-                    fStore.collection("notes").document(user.getUid()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(Login.this, R.string.login_anon_notes_deleted, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    //Deleting the anonymous account
-                    user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(Login.this, R.string.login_anon_acc_deleted, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-
-                fAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Login.this, getString(R.string.login_unsuccessful) + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        spinner.setVisibility(View.GONE);
-                        lEmail.setText("");
-                        lPassword.setText("");
-                    }
-                });
+            // Hiding the keyboard when clicked the button
+            try {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+                Toast.makeText(Login.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
-        createAcc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Register.class));
-            }
-        });
 
-        forgotPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
+            if (mEmail.isEmpty() || mPassword.isEmpty()) {
+                Toast.makeText(Login.this, R.string.login_empty_field, Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // Deleting anonymous notes when the first login
+            spinner.setVisibility(View.VISIBLE);
+
+            if (fAuth.getCurrentUser().isAnonymous()) {
+                FirebaseUser user = fAuth.getCurrentUser();
+
+                fStore.collection("notes").document(user.getUid()).delete().addOnSuccessListener(aVoid -> Toast.makeText(Login.this, R.string.login_anon_notes_deleted, Toast.LENGTH_SHORT).show());
+
+                //Deleting the anonymous account
+                user.delete().addOnSuccessListener(aVoid -> Toast.makeText(Login.this, R.string.login_anon_acc_deleted, Toast.LENGTH_SHORT).show());
+            }
+
+            fAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnSuccessListener(authResult -> {
+                Toast.makeText(Login.this, R.string.login_successful, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }).addOnFailureListener(e -> {
+                Toast.makeText(Login.this, getString(R.string.login_unsuccessful) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                spinner.setVisibility(View.GONE);
+                lEmail.setText("");
+                lPassword.setText("");
+            });
         });
+        createAcc.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Register.class)));
+
+        forgotPass.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ForgotPassword.class)));
     }
 
 
@@ -137,16 +108,10 @@ public class Login extends AppCompatActivity {
         AlertDialog.Builder warning = new AlertDialog.Builder(this)
                 .setTitle(R.string.areyousure)
                 .setMessage(R.string.connect_new_account)
-                .setPositiveButton(R.string.register, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(getApplicationContext(), Register.class));
-                        finish();
-                    }
-                }).setNegativeButton(R.string.login_login, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                .setPositiveButton(R.string.register, (dialog, which) -> {
+                    startActivity(new Intent(getApplicationContext(), Register.class));
+                    finish();
+                }).setNegativeButton(R.string.login_login, (dialog, which) -> {
                 });
         warning.show();
     }

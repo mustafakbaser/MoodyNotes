@@ -93,58 +93,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 /*final int code = getRandomColor();
                 noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));*/
                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId(); // get.Snapshot(noteViewHolder.getBindingAdapterPosition())
-                noteViewHolder.view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(v.getContext(), NoteDetails.class);
-                        intent.putExtra("title", note.getTitle());
-                        intent.putExtra("content", note.getContent());
-                        /*intent.putExtra("code", code);*/
-                        intent.putExtra("noteId", docId);
-                        v.getContext().startActivity(intent);
-                    }
+                noteViewHolder.view.setOnClickListener(v -> {
+                    Intent intent = new Intent(v.getContext(), NoteDetails.class);
+                    intent.putExtra("title", note.getTitle());
+                    intent.putExtra("content", note.getContent());
+                    /*intent.putExtra("code", code);*/
+                    intent.putExtra("noteId", docId);
+                    v.getContext().startActivity(intent);
                 });
 
                 ImageView menuIcon = noteViewHolder.view.findViewById(R.id.menuIcon);
-                menuIcon.setOnClickListener(new View.OnClickListener() {
+                menuIcon.setOnClickListener(v -> {
+                    final String docId1 = noteAdapter.getSnapshots().getSnapshot(i).getId();
+                    PopupMenu menu = new PopupMenu(v.getContext(), v);
+                    menu.setGravity(Gravity.END);
+                    menu.getMenu().add(R.string.edit).setOnMenuItemClickListener(item -> {
+                        Intent intent = new Intent(v.getContext(), EditNote.class);
+                        intent.putExtra("title", note.getTitle());
+                        intent.putExtra("content", note.getContent());
+                        intent.putExtra("noteId", docId1);
+                        startActivity(intent);
+                        return false;
+                    });
 
-                    @Override
-                    public void onClick(final View v) {
-                        final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId();
-                        PopupMenu menu = new PopupMenu(v.getContext(), v);
-                        menu.setGravity(Gravity.END);
-                        menu.getMenu().add(R.string.edit).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                Intent intent = new Intent(v.getContext(), EditNote.class);
-                                intent.putExtra("title", note.getTitle());
-                                intent.putExtra("content", note.getContent());
-                                intent.putExtra("noteId", docId);
-                                startActivity(intent);
-                                return false;
-                            }
-                        });
-
-                        menu.getMenu().add(R.string.delete).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                            @Override
-                            public boolean onMenuItemClick(MenuItem item) {
-                                DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(docId);
-                                docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(MainActivity.this, R.string.note_deleted, Toast.LENGTH_SHORT).show();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(MainActivity.this, R.string.note_not_deleted, Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                                return false;
-                            }
-                        });
-                        menu.show();
-                    }
+                    menu.getMenu().add(R.string.delete).setOnMenuItemClickListener(item -> {
+                        DocumentReference docRef = fStore.collection("notes").document(user.getUid()).collection("notlarim").document(docId1);
+                        docRef.delete().addOnSuccessListener(aVoid -> Toast.makeText(MainActivity.this, R.string.note_deleted, Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(MainActivity.this, R.string.note_not_deleted, Toast.LENGTH_SHORT).show());
+                        return false;
+                    });
+                    menu.show();
                 });
             }
 
@@ -185,12 +162,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         FloatingActionButton fab = findViewById(R.id.addNoteFloat);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), AddNote.class));
-                overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
-            }
+        fab.setOnClickListener(view -> {
+            startActivity(new Intent(view.getContext(), AddNote.class));
+            overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
         });
     }
 
@@ -263,25 +237,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog.Builder warning = new AlertDialog.Builder(this)
                 .setTitle(R.string.areyousure)
                 .setMessage(R.string.logout_alert)
-                .setPositiveButton(R.string.register, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(getApplicationContext(), Register.class));
-                        finish();
-                    }
-                }).setNegativeButton(R.string.clear, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                startActivity(new Intent(getApplicationContext(), Splash.class));
-                                overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
-                            }
-                        });
-                    }
-                });
+                .setPositiveButton(R.string.register, (dialog, which) -> {
+                    startActivity(new Intent(getApplicationContext(), Register.class));
+                    finish();
+                }).setNegativeButton(R.string.clear, (dialog, which) -> user.delete().addOnSuccessListener(aVoid -> {
+                    startActivity(new Intent(getApplicationContext(), Splash.class));
+                    overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+                }));
         warning.show();
     }
 
@@ -344,15 +306,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                //.setIcon(R.drawable.ic_exit_to_app_black_24dp)
                 .setTitle(R.string.areyousure)
                 .setMessage(R.string.closingAppAlert)
-                .setPositiveButton(R.string.close, new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
+                .setPositiveButton(R.string.close, (dialog, which) -> finish())
                 .setNegativeButton(R.string.No, null)
                 .show();
     }

@@ -44,35 +44,32 @@ public class ForgotPassword extends AppCompatActivity {
         userPass = findViewById(R.id.btnForgotPass);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        userPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Hiding the keyboard when clicked the button
-                try {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                } catch (Exception e) {
-                    Toast.makeText(ForgotPassword.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        userPass.setOnClickListener(v -> {
+            // Hiding the keyboard when clicked the button
+            try {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+                Toast.makeText(ForgotPassword.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                if (userEmail.getText().toString().isEmpty()) {
-                    Toast.makeText(ForgotPassword.this, R.string.login_empty_field, Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    progressBar.setVisibility(View.VISIBLE);
-                    firebaseAuth.sendPasswordResetEmail(userEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            progressBar.setVisibility(View.GONE);
-                            if (task.isSuccessful()) {
-                                displayAlert();
-                            } else {
-                                Toast.makeText(ForgotPassword.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+            if (userEmail.getText().toString().isEmpty()) {
+                Toast.makeText(ForgotPassword.this, R.string.login_empty_field, Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                progressBar.setVisibility(View.VISIBLE);
+                firebaseAuth.sendPasswordResetEmail(userEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        progressBar.setVisibility(View.GONE);
+                        if (task.isSuccessful()) {
+                            displayAlert();
+                        } else {
+                            Toast.makeText(ForgotPassword.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    });
-                }
+                    }
+                });
             }
         });
     }

@@ -26,30 +26,21 @@ public class Splash extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
 
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // giriş yapıp yapmadığını kontrol edecek
-                if (fAuth.getCurrentUser() != null) {
+        handler.postDelayed(() -> {
+            // Session control, logged in or not
+            if (fAuth.getCurrentUser() != null) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            } else {
+                // Create new anonymous account
+                fAuth.signInAnonymously().addOnSuccessListener(authResult -> {
+                    Toast.makeText(Splash.this, R.string.note_not_sync_alert, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
-                } else {
-                    // yeni anonim hesap
-                    fAuth.signInAnonymously().addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(Splash.this, R.string.note_not_sync_alert, Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Splash.this, getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
-                }
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(Splash.this, getString(R.string.error) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
+                });
             }
         }, 3000);
     }

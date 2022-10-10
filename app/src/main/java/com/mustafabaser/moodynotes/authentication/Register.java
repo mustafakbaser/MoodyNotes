@@ -52,67 +52,53 @@ public class Register extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
 
-        loginAct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Login.class));
+        loginAct.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), Login.class)));
+
+        syncAccount.setOnClickListener(v -> {
+            final String uUserName = rUserName.getText().toString();
+            String uUserEmail = rUserEmail.getText().toString();
+            String uUserPass = rUserPass.getText().toString();
+            String uConfPass = rUserConfPass.getText().toString();
+
+            // Hiding the keyboard when clicked the button
+            try {
+                InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            } catch (Exception e) {
+                Toast.makeText(Register.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
+                return;
             }
-        });
 
-        syncAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String uUserName = rUserName.getText().toString();
-                String uUserEmail = rUserEmail.getText().toString();
-                String uUserPass = rUserPass.getText().toString();
-                String uConfPass = rUserConfPass.getText().toString();
+            if (uUserName.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty() || uUserEmail.isEmpty()) {
+                Toast.makeText(Register.this, R.string.register_empty_field, Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                // Hiding the keyboard when clicked the button
-                try {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                } catch (Exception e) {
-                    Toast.makeText(Register.this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            if (!uUserPass.equals(uConfPass)) {
+                rUserConfPass.setError(getString(R.string.register_pass_doesnot_match));
+            }
+            progressBar.setVisibility(View.VISIBLE);
 
-                if (uUserName.isEmpty() || uUserPass.isEmpty() || uConfPass.isEmpty() || uUserEmail.isEmpty()) {
-                    Toast.makeText(Register.this, R.string.register_empty_field, Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            AuthCredential credential = EmailAuthProvider.getCredential(uUserEmail, uUserPass);
+            fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(authResult -> {
+                Toast.makeText(Register.this, R.string.register_successful, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                if (!uUserPass.equals(uConfPass)) {
-                    rUserConfPass.setError(getString(R.string.register_pass_doesnot_match));
-                }
+                FirebaseUser userNav = fAuth.getCurrentUser();
+                UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(uUserName) // buraya bi dön
+                        .build();
+                userNav.updateProfile(request);
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+                finish();
+
+
+            }).addOnFailureListener(e -> {
+                Toast.makeText(Register.this, R.string.register_connection_alert, Toast.LENGTH_SHORT).show();
                 progressBar.setVisibility(View.VISIBLE);
-
-                AuthCredential credential = EmailAuthProvider.getCredential(uUserEmail, uUserPass);
-                fAuth.getCurrentUser().linkWithCredential(credential).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(Register.this, R.string.register_successful, Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                        FirebaseUser userNav = fAuth.getCurrentUser();
-                        UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
-                                .setDisplayName(uUserName) // buraya bi dön
-                                .build();
-                        userNav.updateProfile(request);
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
-                        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
-                        finish();
-
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Register.this, R.string.register_connection_alert, Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.VISIBLE);
-                    }
-                });
-            }
+            });
         });
     }
 
