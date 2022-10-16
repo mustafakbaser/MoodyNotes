@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,8 +30,6 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,15 +39,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.mustafabaser.moodynotes.authentication.Login;
 import com.mustafabaser.moodynotes.authentication.Register;
-import com.mustafabaser.moodynotes.model.Adapter;
 import com.mustafabaser.moodynotes.model.Note;
 import com.mustafabaser.moodynotes.note.AddNote;
 import com.mustafabaser.moodynotes.note.EditNote;
 import com.mustafabaser.moodynotes.note.NoteDetails;
 
+/*import com.mustafabaser.moodynotes.model.Adapter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import android.content.DialogInterface;
+import android.util.Log;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.List;*/
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user = fAuth.getCurrentUser();
         fStore = FirebaseFirestore.getInstance();
 
-        //Query notes > uuid > notlarim (Firestore note structure)
+        //Query: notes > uuid > notlarim (Firestore note structure)
         Query query = fStore.collection("notes").document(user.getUid()).collection("notlarim").orderBy("title", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
@@ -208,7 +207,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, getString(R.string.shareapp_choose_one)));
                 } catch (Exception e) {
-                    //e.toString();
+                    Toast.makeText(this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
                 break;
@@ -222,8 +222,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
+    //Kullanıcı anonim kontrol
     private void checkUser() {
-        //Kullanıcı anonim kontrol
         if (user.isAnonymous()) {
             displayAlert();
         } else {
