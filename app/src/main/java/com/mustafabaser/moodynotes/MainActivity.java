@@ -44,14 +44,6 @@ import com.mustafabaser.moodynotes.note.AddNote;
 import com.mustafabaser.moodynotes.note.EditNote;
 import com.mustafabaser.moodynotes.note.NoteDetails;
 
-/*import com.mustafabaser.moodynotes.model.Adapter;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import android.content.DialogInterface;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;*/
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
@@ -76,7 +68,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         user = fAuth.getCurrentUser();
         fStore = FirebaseFirestore.getInstance();
 
-        //Query: notes > uuid > notlarim (Firestore note structure)
+        /*
+        FIREBASE QUERY STRUCTURE
+        Query: notes > uuid > notlarim (Firestore note structure)
+        */
         Query query = fStore.collection("notes").document(user.getUid()).collection("notlarim").orderBy("title", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
@@ -88,15 +83,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, @SuppressLint("RecyclerView") final int i, @NonNull final Note note) {
                 noteViewHolder.noteTitle.setText(note.getTitle());
                 noteViewHolder.noteContent.setText(note.getContent());
-                // Note layer background color
-                /*final int code = getRandomColor();
-                noteViewHolder.mCardView.setCardBackgroundColor(noteViewHolder.view.getResources().getColor(code, null));*/
                 final String docId = noteAdapter.getSnapshots().getSnapshot(i).getId(); // get.Snapshot(noteViewHolder.getBindingAdapterPosition())
                 noteViewHolder.view.setOnClickListener(v -> {
                     Intent intent = new Intent(v.getContext(), NoteDetails.class);
                     intent.putExtra("title", note.getTitle());
                     intent.putExtra("content", note.getContent());
-                    /*intent.putExtra("code", code);*/
                     intent.putExtra("noteId", docId);
                     v.getContext().startActivity(intent);
                 });
@@ -141,7 +132,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
-        noteLists.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)); //spanCount yazan yere yan yana kaç not olacağını yazıyorum.
+        /*
+        GRID: "Notes" design layout
+        If I set spanCount: 1, the notes are displayed one by one in the grid layout.
+        If I set the spanCount: 2, two notes will appear side by side.
+        */
+        noteLists.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
         noteLists.setAdapter(noteAdapter);
 
         View headerView = nav_view.getHeaderView(0);
@@ -222,7 +218,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    //Kullanıcı anonim kontrol
+    /*
+    CHECK
+    Is user anonymous or registered?
+    */
     private void checkUser() {
         if (user.isAnonymous()) {
             displayAlert();
@@ -277,17 +276,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    // Note layer background color
-    /*private int getRandomColor() {
-        List<Integer> colorCode = new ArrayList<>();
-        colorCode.add(R.color.blue);
-        colorCode.add(R.color.yellow);
-
-        Random randomColor = new Random();
-        int number = randomColor.nextInt(colorCode.size());
-        return colorCode.get(number);
-    }*/
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -302,7 +290,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    // App-Closing Alert
+    /*
+    App-Closing Alert
+    After clicking back button when there is not any other previous activity.
+    */
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
