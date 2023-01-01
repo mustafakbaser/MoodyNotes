@@ -18,7 +18,7 @@ public class PrivacyPolicy extends AppCompatActivity {
         setContentView(R.layout.activity_privacy_policy);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.Privacy_Policy);
-        String url = "https://docs.mustafabaser.net/moody-notes.html";
+        String url = "https://docs.mustafabaser.net/moody-notes";
 
         WebView webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient());
@@ -39,7 +39,7 @@ public class PrivacyPolicy extends AppCompatActivity {
         webView.loadUrl(url);
     }
 
-    //Backbutton
+    //Back-button
     public boolean onSupportNavigateUp(){
         Intent intent = new Intent(PrivacyPolicy.this, Register.class);
         startActivity(intent);
