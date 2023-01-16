@@ -24,17 +24,17 @@ Moody Notes provides you with a free, easy-to-use, and powerful tool to take you
 
 ## Features
 
-Firebase Email Authentication, Firebase Anonymous Account Authentication, Firebase Reset Password.
-Create, Read, Update, Delete Notes (CRUD).
-RecyclerView to display Firebase Data as notes.
-Navigation Menu
-Transition Animations.
-10+ Language Support
+- Firebase Email Authentication, Firebase Anonymous Account Authentication, Firebase Reset Password.
+- Create, Read, Update, Delete Notes (CRUD).
+- RecyclerView to display Firebase Data as notes.
+- Navigation Menu
+- Transition Animations.
+- 10+ Language Support
 
 ## Tech Stack
 
-Native Android, Java
-Firebase Database
+- Native Android, Java
+- Firebase Database
 
 If you like this Repo, Please click the :star:
 
