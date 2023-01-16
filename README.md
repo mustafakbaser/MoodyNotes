@@ -22,15 +22,25 @@ Moody Notes is a powerful yet easy-to-use note-taking application. This applicat
 
 Moody Notes provides you with a free, easy-to-use, and powerful tool to take your text notes. It starts by starting with a simple layout of five screens, which give you space for putting everything: text notes, drawings, emoji and attachments. All these notes are synchronized with your device via bluetooth and cloud synchronously at the same time.
 
+## Features
+
+Firebase Email Authentication, Firebase Anonymous Account Authentication, Firebase Reset Password.
+Create, Read, Update, Delete Notes (CRUD).
+RecyclerView to display Firebase Data as notes.
+Navigation Menu
+Transition Animations.
+10+ Language Support
+
 ## Tech Stack
 
 Native Android, Java
+Firebase Database
+
+If you like this Repo, Please click the :star:
 
 ## Store
 
 <a href="https://play.google.com/store/apps/details?id=com.mustafabaser.moodynotes">Google Play Store</a>
-
-If you like this Repo, Please click the :star:
 
 ## :pencil: License
 
