@@ -12,9 +12,15 @@
 
 A new note experience! Don't lose your notes with Moody Notes, check, create, update from all your Android devices!
 
-Moody Notes is a completely free notepad application. 
-Create your account and start recording your notes, log in your account from your other devices and tablets and check your notes synchronously.
-Taking notes has never been easier!
+Are you looking for a versatile and reliable note-taking application with a user-friendly interface? If so, Moody Notes is the right one for you. Take notes synchronously from any Android device, quickly and easily. 
+
+Moody Notes is an application designed to help you manage your workload and time more efficiently. It lets you work from anywhere with your notes. 
+
+If you want to write down your thoughts, Moody Notes is the best choice for you. You can reach your notes synchronously from every Android device, and it has a user-friendly interface and easy to take notes.
+
+Moody Notes is a powerful yet easy-to-use note-taking application. This application helps you to get organized, focus on your work and achieve your goals more effectively. The powerful features allow you to manage your time easily with your notes. This marvellous app will help you write down whatever you need for different purposes and also help you organize all the important things you have to do daily."
+
+Moody Notes provides you with a free, easy-to-use, and powerful tool to take your text notes. It starts by starting with a simple layout of five screens, which give you space for putting everything: text notes, drawings, emoji and attachments. All these notes are synchronized with your device via bluetooth and cloud synchronously at the same time.
 
 <a href="https://play.google.com/store/apps/details?id=com.mustafabaser.moodynotes">Google Play Store</a>
 
