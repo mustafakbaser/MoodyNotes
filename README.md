@@ -1,5 +1,5 @@
 <h1 align="center"> MoodyNotes | Native Android, Java | Firebase Database</h1>
-<p align="center"><i>A note taking application that works synchronously on all Android devices with the membership system and stores the data on Firebase.</i></p>
+<p align="center"><i>A note taking application that works synchronously on all Android devices, and stores the data on Firebase (Firestore) Database.</i></p>
 <div align="center">
   <a href="https://github.com/mustafakbaser/MoodyNotes/stargazers"><img src="https://img.shields.io/github/stars/mustafakbaser/MoodyNotes" alt="Stars Badge"/></a>
 <a href="https://github.com/mustafakbaser/MoodyNotes/network/members"><img src="https://img.shields.io/github/forks/mustafakbaser/MoodyNotes" alt="Forks Badge"/></a>
@@ -36,7 +36,7 @@ Moody Notes provides you with a free, easy-to-use, and powerful tool to take you
 
 - Java, Nativa Android
 - Firebase Database
-- LottieFiles
+- LottieFiles (for animated splash screen)
 
 If you like this Repo, Please click the :star:
 
