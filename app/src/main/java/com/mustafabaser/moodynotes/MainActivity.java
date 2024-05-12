@@ -72,7 +72,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FIREBASE QUERY STRUCTURE
         Query: notes > uuid > notlarim (Firestore note structure)
         */
-        Query query = fStore.collection("notes").document(user.getUid()).collection("notlarim").orderBy("title", Query.Direction.ASCENDING);
+        Query query = fStore.collection("notes")
+                .document(user.getUid())
+                .collection("notlarim")
+                .orderBy("created_at", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Note> allNotes = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query, Note.class)
@@ -170,12 +173,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.notes:
                 //startActivity(new Intent(this, MainActivity.class));
                 break;
-
             case R.id.addNote:
                 startActivity(new Intent(this, AddNote.class));
                 overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
                 break;
-
             case R.id.sync:
                 if (user.isAnonymous()) {
                     startActivity(new Intent(this, Login.class));
@@ -184,7 +185,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, R.string.already_sync, Toast.LENGTH_SHORT).show();
                 }
                 break;
-
             case R.id.rating:
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
@@ -192,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
                 }
                 break;
-
             case R.id.shareapp:
                 try {
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -206,12 +205,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, R.string.error_try_again, Toast.LENGTH_SHORT).show();
                     finish();
                 }
-
                 break;
             case R.id.logout:
                 checkUser();
                 break;
-
             default:
                 Toast.makeText(this, "Moody Notes", Toast.LENGTH_SHORT).show();
         }
@@ -220,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /*
     CHECK
-    Is user anonymous or registered?
+    Is the user anonymous or registered?
     */
     private void checkUser() {
         if (user.isAnonymous()) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,6 +67,7 @@ public class AddNote extends AppCompatActivity {
                 Map<String, Object> note = new HashMap<>();
                 note.put("title", nTitle);
                 note.put("content", nContent);
+                note.put("created_at", new Timestamp(new Date()));
 
                 docref.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
